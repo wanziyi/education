@@ -22,6 +22,9 @@ class IndexController extends Controller
     public function mycourse(){
         return view("index.mycourse");
     }//前台个人信息
+    public function mycourses(){
+        return view("index.mycourses");
+    }
     public function login(){
         return view("index.login");
     }//前台登录
@@ -49,4 +52,16 @@ class IndexController extends Controller
     public function askarea(){
         return view("index/askarea");
     }//前台问答模块
+
+    public function upload(Request $request)
+    {
+        $arr = $_FILES["Filedata"];
+        $tmpName = $arr['tmp_name'];
+        $ext  = explode(".",$arr['name'])[1];
+        $newFileName = uniqid().".".$ext;
+        $newFilePath = "./images/".$newFileName;
+        $aa=move_uploaded_file($tmpName, $newFilePath);
+        $newFilePath = trim($newFilePath,".");
+        echo $newFilePath;
+    }//文件上传
 }

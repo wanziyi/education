@@ -7,7 +7,7 @@
                         <img src="/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p> 测试用户</p>
+                        <p> 用户</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
 					<li class="treeview">
 				        <a href="#">
 				            <i class="fa fa-folder"></i> 
-				            <span>问答管理</span>
+				            <span>用户信息</span>
 				            <span class="pull-right-container">
 				       			<i class="fa fa-angle-left pull-right"></i>
 				   		 	</span>
@@ -122,17 +122,36 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login">
-				                <a href="{{url('/answer/answer_add')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>问答添加
+				                <a href="{{url('/admin/mycourse')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>信息展示
 				                </a>
 				            </li>
+				        </ul>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-folder"></i>
+							<span>权限管理</span>
+							<span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+						</a>
+						<ul class="treeview-menu">
+
 							<li id="admin-login">
-				                <a href="{{url('/answer/answer_list')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>问答展示
-				                </a>
-				            </li>
-				        </ul>                        
-				    </li>
+								<a href="{{url('/rbac/priv')}}" target="iframe">
+									<i class="fa fa-circle-o"></i>权限添加
+								</a>
+							</li>
+							<li id="admin-login">
+								<a href="{{url('/rbac/priv_list')}}" target="iframe">
+									<i class="fa fa-circle-o"></i>权限展示
+								</a>
+							</li>
+						</ul>
+					</li>
+
+
 				    <!-- 菜单 /-->
 
                 </ul>
