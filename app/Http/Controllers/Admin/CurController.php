@@ -61,6 +61,7 @@ class CurController extends Controller
         }
     }
 
+
     public function update($id){
         $res = CategoryModel::get();
         $data = CurModel::where('cur_id',$id)->first();
