@@ -52,7 +52,7 @@
 
     <!-- 内容区域 -->
     <div class="content-wrapper">
-        {{--<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
+        {{--<iframe width="100%" id="iframe" name="iframe"  onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
 
 {{--//======================================================================================================================--}}
 
@@ -73,22 +73,14 @@
                 
                 <!--工具栏/-->
                 <!--数据列表-->
-                <form>
-                    <input type="text" name="cur_name">
-                    <input type="submit" value="搜索">
-                </form>
                 <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                     <thead>
                     <tr>
                         <th class="" style="padding-right:0px">
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
-                        <th class="sorting_asc">课程ID</th>
-                        <th class="sorting">课程分类</th>
-                        <th class="sorting">课程名称</th>
-                        <th class="sorting">课程总课时</th>
-                        <th class="sorting">课程时长</th>
-                        <th class="sorting">课程简介</th>
+                        <th class="sorting_asc">角色ID</th>
+                        <th class="sorting">角色名称</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
@@ -96,21 +88,15 @@
                         @foreach($res as $k=>$v)
                     <tr >
                         <td></td>
-                        <td>{{$v->cur_id}}</td>
-                        <td>{{$v->cate_id}}</td>
-                        <td>{{$v->cur_name}}</td>
-                        <td>{{$v->cur_class}}</td>
-                        <td>{{$v->hour}}</td>
-                        <td>{{$v->cur_content}}</td>
+                        <td>{{$v->role_id}}</td>
+                        <td>{{$v->role_name}}</td>
                         <td class="text-center">
-                            <button type="button"  id="del" cur_id="{{$v->cur_id}}">删除</button>
-                            <button type="button"><a href="{{url('/course/update/'.$v->cur_id)}}">编辑</a></button>
+                            <button type="button"  id="del" role_id="{{$v->role_id}}">删除</button>
+                            <button type="button"><a href="{{url('/role/update/'.$v->role_id)}}">编辑</a></button>
                         </td>
                     </tr>
                         @endforeach
-                         <tr>
-                            <td colspan="6">{{$res->appends($query)->links()}}</td>
-                         </tr>
+                         
                     </tbody>
 
                 </table>
@@ -166,17 +152,17 @@
 <script>
     $(document).on('click','#del',function(){
         // alert(11);
-        var cur_id = $(this).attr('cur_id');
+        var role_id = $(this).attr('role_id');
         // console.log(cate_id);
         $.ajax({
-            url:'/course/del',
-            data:{cur_id:cur_id},
+            url:'/role/del',
+            data:{role_id:role_id},
             type:'post',
             dataType:'json',
             success:function(res){
                 if(res.code=='0'){
                         alert(res.mag)
-                        location.href='/course/course_list'
+                        location.href='/role/role_list'
                 }
             }
         })

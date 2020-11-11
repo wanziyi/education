@@ -40,11 +40,21 @@ Route::any("index/askarea",'Index\IndexController@askarea');//前台问答模块
 // ========================================================后台====================================================================
 Route::any("/admin/login",'Admin\AdminController@login');//后台登录
 Route::any("/admin/index",'Admin\AdminController@index');//后台首页
-Route::any("/course/course_add",'Admin\AdminController@course_add');//后台课程添加
-Route::any("/course/course_list",'Admin\AdminController@course_list');//后台课程展示
-Route::any("/course/course_del",'Admin\AdminController@course_del');//后台课程删除
-Route::any("/course/course_upd",'Admin\AdminController@course_upd');//后台课程修改
-Route::any("/course/course_upd_do",'Admin\AdminController@course_upd_do');//后台课程修改执行
+Route::any("/course/course_add",'Admin\CurController@course_add');//后台课程添加
+Route::any("/course/store",'Admin\CurController@store');//后台课程展示
+Route::any("/course/course_list",'Admin\CurController@course_list');//后台课程展示
+Route::any("/course/del",'Admin\CurController@del');//后台课程删除
+Route::any("/course/update/{id}",'Admin\CurController@update');//后台课程删除
+Route::any("/course/updatedo",'Admin\CurController@updatedo');//后台课程删除
+
+
+Route::any("/category/cate_add",'Admin\CategoryController@cate_add');//后台课程分类添加
+Route::any("/category/store",'Admin\CategoryController@store');//后台课程执行添加
+Route::any("/category/cate_list",'Admin\CategoryController@cate_list');//后台课程分类展示
+Route::any("/category/del",'Admin\CategoryController@del');//后台课程分类删除
+
+
+
 
 Route::any("/question/question_add",'Admin\AdminController@question_add');//后台题库添加
 Route::any("/question/question_list",'Admin\AdminController@question_list');//后台题库展示
@@ -69,5 +79,31 @@ Route::any("/answer/answer_list",'Admin\AdminController@answer_list');//后台�
 Route::any("/answer/answer_del",'Admin\AdminController@answer_del');//后台课程删除
 Route::any("/answer/answer_upd",'Admin\AdminController@answer_upd');//后台课程修改
 Route::any("/answer/answer_upd_do",'Admin\AdminController@answer_upd_do');//后台课程修改执行
+
+Route::any("/links/links_add",'Admin\LinksController@links_add');//后台友情链接添加
+Route::any("/links/links_list",'Admin\LinksController@links_list');//后台友情链接展示
+
+
+
+Route::any("/catagory/cata_add",'Admin\CataController@cata_add');//后台课程目录添加
+Route::any("/catagory/store",'Admin\CataController@store');//后台课程目录执行添加
+Route::any("/catagory/cata_list",'Admin\CataController@cata_list');//后台课程目录展示
+Route::any("/catagory/del",'Admin\CataController@del');//后台课程目录删除
+Route::any("/catagory/update",'Admin\CataController@update');//后台课程目录修改
+
+Route::any("/cd/cd_add",'Admin\CdController@cd_add');//后台课程资料添加
+Route::any("/cd/store",'Admin\CdController@store');//后台课程资料执行添加
+Route::any("/cd/cd_list",'Admin\CdController@cd_list');//后台课程资料展示
+Route::any("/cd/del",'Admin\CdController@del');//后台课程资料删除
+Route::any("/cd/update",'Admin\CdController@update');//后台课程资料修改
+
+
+
+Route::any("/role/role_add",'Admin\RoleController@role_add');//后台角色添加
+Route::any("/role/store",'Admin\RoleController@store');//后台角色执行添加
+Route::any("/role/role_list",'Admin\RoleController@role_list');//后台角色展示
+Route::any("/role/del",'Admin\RoleController@del');//后台角色删除
+Route::any("/role/update/{id}",'Admin\RoleController@update');//后台角色修改
+Route::any("/role/updatedo",'Admin\RoleController@updatedo');//后台角色修改
 
 

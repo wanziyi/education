@@ -133,6 +133,116 @@
 				            </li>
 				        </ul>                        
 				    </li>
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>友情链接管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('/links/links_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>友情链接添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('/links/links_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>友情链接展示
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				     <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>课程分类</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('/category/cate_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>课程分类添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('/category/cate_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>课程分类展示
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>课程目录管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('catagory/cata_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>课程目录添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('catagory/cata_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>课程目录展示
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>课程资料管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('cd/cd_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>课程资料添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('cd/cd_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>课程资料展示
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>角色管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('role/role_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>角色添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('role/role_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>角色展示
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
 				    <!-- 菜单 /-->
 
                 </ul>

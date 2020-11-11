@@ -69,48 +69,35 @@
             <div class="table-box">
 
                 <!--工具栏-->
-              
+               
                 
                 <!--工具栏/-->
                 <!--数据列表-->
-                <form>
-                    <input type="text" name="cur_name">
-                    <input type="submit" value="搜索">
-                </form>
                 <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                     <thead>
                     <tr>
                         <th class="" style="padding-right:0px">
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
-                        <th class="sorting_asc">课程ID</th>
+                        <th class="sorting_asc">课程目录ID</th>
+                        <th class="sorting">目录名称</th>
                         <th class="sorting">课程分类</th>
-                        <th class="sorting">课程名称</th>
-                        <th class="sorting">课程总课时</th>
-                        <th class="sorting">课程时长</th>
-                        <th class="sorting">课程简介</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($res as $k=>$v)
-                    <tr >
-                        <td></td>
-                        <td>{{$v->cur_id}}</td>
+                    @foreach($res as $k=>$v)
+                    <tr>
+                         <td></td>
+                        <td>{{$v->cata_id}}</td>
+                        <td>{{$v->cata_name}}</td>
                         <td>{{$v->cate_id}}</td>
-                        <td>{{$v->cur_name}}</td>
-                        <td>{{$v->cur_class}}</td>
-                        <td>{{$v->hour}}</td>
-                        <td>{{$v->cur_content}}</td>
                         <td class="text-center">
-                            <button type="button"  id="del" cur_id="{{$v->cur_id}}">删除</button>
-                            <button type="button"><a href="{{url('/course/update/'.$v->cur_id)}}">编辑</a></button>
+                            <button type="button"  id="del" cata_id="{{$v->cata_id}}">删除</button>
+                            <button type="button"><a href="">修改</a></button>
                         </td>
                     </tr>
-                        @endforeach
-                         <tr>
-                            <td colspan="6">{{$res->appends($query)->links()}}</td>
-                         </tr>
+                @endforeach
                     </tbody>
 
                 </table>
@@ -166,19 +153,20 @@
 <script>
     $(document).on('click','#del',function(){
         // alert(11);
-        var cur_id = $(this).attr('cur_id');
+        var cata_id = $(this).attr('cata_id');
         // console.log(cate_id);
         $.ajax({
-            url:'/course/del',
-            data:{cur_id:cur_id},
+            url:'/catagory/del',
+            data:{cata_id:cata_id},
             type:'post',
             dataType:'json',
             success:function(res){
                 if(res.code=='0'){
                         alert(res.mag)
-                        location.href='/course/course_list'
+                        location.href='/catagory/cata_list'
                 }
             }
         })
     })
 </script>
+

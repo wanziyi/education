@@ -62,7 +62,7 @@
         <!-- .box-body -->
 
         <div class="box-header with-border">
-            <h3 class="box-title">课程 模板管理</h3>
+            <h3 class="box-title">课程目录管理</h3>
         </div>
 
         <div class="box-body">
@@ -74,7 +74,7 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                            <button type="button" class="btn btn-default" title="修改" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 修改</button>
                             <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
 
                             <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
@@ -100,59 +100,29 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">课程 模板编辑</h3>
+                        <h3 id="myModalLabel">课程目录 模板编辑</h3>
                     </div>
                     <div class="modal-body">
                         <form  id="fileForm" >
 
                         <table class="table table-bordered table-striped"  width="800px">
                             <tr>
+                                <td>目录名称</td>
+                                <td><input  type="text" class="form-control" placeholder="" name="" id="">  </td>
+                            </tr>
+                            <tr>
                                 <td>课程分类</td>
                                 <td>
-                                    <select name="" id="cate_id">
-                                        @foreach($res as $k=>$v)
-                                        <option value="{{$v->cate_id}}"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
-                                        @endforeach
+                                    <select name="" id="">
+                                        <option value=""></option>
                                     </select>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>课程名称</td>
-                                <td><input  class="form-control" placeholder="" name="cur_name" id="">  </td>
-                            </tr>
-                            <tr>
-                                <td>课程总课时</td>
-                                <td><input  class="form-control" placeholder="" name="cur_class" id="">  </td>
-                            </tr>
-                            <tr>
-                                <td>课程时长</td>
-                                <td>
-                                    <select name="" id="hour">
-                                        <option value="0">时</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>课程简介</td>
-                                <td><textarea name="cur_content" id="" cols="30" rows="10"></textarea></td>
                             </tr>
                                                      
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">添加</button>
+                        <button class="btn" data-dismiss="modal" aria-hidden="true" id="button">修改</button>
                     </div>
                 </div>
             </div>
@@ -169,37 +139,8 @@
     <!-- 底部导航 -->
     @include("nav.admin_foot")
             <!-- 底部导航 /-->
-
 </div>
-
 </body>
-
 </html>
-<script>
-    $(document).on('click','#button',function(){
-        // alert(111);
-        var cate_id = $('#cate_id').val();
-        var cur_name = $('input[name="cur_name"]').val();
-        var cur_class = $('input[name="cur_class"]').val();
-        var hour = $('#hour').val();
-        var cur_content = $('textarea[name="cur_content"]').val();
-        // console.log(cate_id);
-        // console.log(cur_name);
-        // console.log(cur_class);
-        // console.log(hour);
-        // console.log(cur_content);
-        $.ajax({
-            url:"/course/store",
-                data:{cate_id:cate_id,cur_name:cur_name,cur_class:cur_class,hour:hour,cur_content:cur_content},
-                type:"post",
-                dataType:"json",
-                success:function(res){
-                    // alert(111);
-                    if(res.code=='0'){
-                        alert(res.mag)
-                        location.href='/course/course_list'
-                    }
-                }
-        })
-    })
-</script>
+
+

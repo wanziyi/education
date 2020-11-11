@@ -74,7 +74,7 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                            <button type="button" class="btn btn-default" title="修改" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 修改</button>
                             <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
 
                             <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
@@ -106,23 +106,24 @@
                         <form  id="fileForm" >
 
                         <table class="table table-bordered table-striped"  width="800px">
+                            <input type="hidden" name="cur_id" value="{{$data->cur_id}}">
                             <tr>
                                 <td>课程分类</td>
                                 <td>
                                     <select name="" id="cate_id">
-                                        @foreach($res as $k=>$v)
-                                        <option value="{{$v->cate_id}}"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
+                                       @foreach($res as $k=>$v)
+                                        <option value="{{$v->cate_id}}" {{$v->cate_id==$data['cur_id']?'selected':''}}><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
                                         @endforeach
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>课程名称</td>
-                                <td><input  class="form-control" placeholder="" name="cur_name" id="">  </td>
+                                <td><input  class="form-control" placeholder="" name="cur_name" id="" value="{{$data->cur_name}}">  </td>
                             </tr>
                             <tr>
                                 <td>课程总课时</td>
-                                <td><input  class="form-control" placeholder="" name="cur_class" id="">  </td>
+                                <td><input  class="form-control" placeholder="" name="cur_class" id="" value="{{$data->cur_class}}"></td>
                             </tr>
                             <tr>
                                 <td>课程时长</td>
@@ -146,13 +147,13 @@
                             </tr>
                             <tr>
                                 <td>课程简介</td>
-                                <td><textarea name="cur_content" id="" cols="30" rows="10"></textarea></td>
+                                <td><textarea name="cur_content" id="" cols="30" rows="10">{{$data->cur_content}}</textarea></td>
                             </tr>
                                                      
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">添加</button>
+                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">修改</button>
                     </div>
                 </div>
             </div>
@@ -178,6 +179,7 @@
 <script>
     $(document).on('click','#button',function(){
         // alert(111);
+        var cur_id = $('input[name="cur_id"]').val();
         var cate_id = $('#cate_id').val();
         var cur_name = $('input[name="cur_name"]').val();
         var cur_class = $('input[name="cur_class"]').val();
@@ -189,8 +191,8 @@
         // console.log(hour);
         // console.log(cur_content);
         $.ajax({
-            url:"/course/store",
-                data:{cate_id:cate_id,cur_name:cur_name,cur_class:cur_class,hour:hour,cur_content:cur_content},
+            url:"/course/updatedo",
+                data:{cate_id:cate_id,cur_name:cur_name,cur_class:cur_class,hour:hour,cur_content:cur_content,cur_id:cur_id},
                 type:"post",
                 dataType:"json",
                 success:function(res){

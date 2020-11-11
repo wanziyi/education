@@ -13,21 +13,7 @@ class AdminController extends Controller
     public function index(){
         return view("admin.index");
     }//后台首页
-    public function course_add(){
-        return view("course.course_add");
-    }//后台课程添加
-    public function course_list(){
-        return view("course.course_list");
-    }//后台课程展示
-    public function course_del(){
-        return view("course.course_add");
-    }//后台课程删除
-    public function course_upd(){
-        return view("course.course_add");
-    }//后台课程修改
-    public function course_upd_do(){
-        return view("course.course_add");
-    }//后台课程修改执行
+    
     public function question_add(){
         return view("question.question_add");
     }//后台题库添加

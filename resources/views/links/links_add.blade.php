@@ -52,7 +52,7 @@
 
     <!-- 内容区域 -->
     <div class="content-wrapper">
-        {{--<iframe width="100%" id="iframe" name="iframe"  onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
+        {{--<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
 
 {{--//======================================================================================================================--}}
 
@@ -62,7 +62,7 @@
         <!-- .box-body -->
 
         <div class="box-header with-border">
-            <h3 class="box-title">课程 模板管理</h3>
+            <h3 class="box-title">资讯管理</h3>
         </div>
 
         <div class="box-body">
@@ -84,15 +84,48 @@
                 
                 <!--工具栏/-->
                 <!--数据列表-->
-                
+                <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+                    <thead>
+                    <tr>
+                        <th class="" style="padding-right:0px">
+                            <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                        </th>
+                        <th class="sorting_asc">资讯ID</th>
+                        <th class="sorting">资讯名称</th>
+                        <th class="sorting">资讯添加时间</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td class="text-center">
+                            <button type="button"  id="del">删除</button>
+                            <button type="button"  >修改</button>
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
                 <!--数据列表/-->
 
 
             </div>
             <!-- 数据表格 /-->
 
+
+
+
         </div>
         <!-- /.box-body -->
+
+
+
 
         <!-- 编辑窗口 -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -100,55 +133,23 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">课程 模板编辑</h3>
+                        <h3 id="myModalLabel">友情链接 模板编辑</h3>
                     </div>
                     <div class="modal-body">
                         <form  id="fileForm" >
 
                         <table class="table table-bordered table-striped"  width="800px">
                             <tr>
-                                <td>课程分类</td>
-                                <td>
-                                    <select name="" id="cate_id">
-                                        @foreach($res as $k=>$v)
-                                        <option value="{{$v->cate_id}}"><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
+                                <td>名称</td>
+                                <td><input  class="form-control" placeholder="" name="" id="">  </td>
                             </tr>
-                            <tr>
-                                <td>课程名称</td>
-                                <td><input  class="form-control" placeholder="" name="cur_name" id="">  </td>
+                             <tr>
+                                <td>跳转地址</td>
+                                <td><input  class="form-control" placeholder="" name="" id="">  </td>
                             </tr>
-                            <tr>
-                                <td>课程总课时</td>
-                                <td><input  class="form-control" placeholder="" name="cur_class" id="">  </td>
-                            </tr>
-                            <tr>
-                                <td>课程时长</td>
-                                <td>
-                                    <select name="" id="hour">
-                                        <option value="0">时</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>课程简介</td>
-                                <td><textarea name="cur_content" id="" cols="30" rows="10"></textarea></td>
-                            </tr>
-                                                     
+                            
+                            
+                           
                         </table>
                     </div>
                     <div class="modal-footer">
@@ -175,31 +176,3 @@
 </body>
 
 </html>
-<script>
-    $(document).on('click','#button',function(){
-        // alert(111);
-        var cate_id = $('#cate_id').val();
-        var cur_name = $('input[name="cur_name"]').val();
-        var cur_class = $('input[name="cur_class"]').val();
-        var hour = $('#hour').val();
-        var cur_content = $('textarea[name="cur_content"]').val();
-        // console.log(cate_id);
-        // console.log(cur_name);
-        // console.log(cur_class);
-        // console.log(hour);
-        // console.log(cur_content);
-        $.ajax({
-            url:"/course/store",
-                data:{cate_id:cate_id,cur_name:cur_name,cur_class:cur_class,hour:hour,cur_content:cur_content},
-                type:"post",
-                dataType:"json",
-                success:function(res){
-                    // alert(111);
-                    if(res.code=='0'){
-                        alert(res.mag)
-                        location.href='/course/course_list'
-                    }
-                }
-        })
-    })
-</script>
