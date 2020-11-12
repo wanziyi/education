@@ -15,27 +15,9 @@
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/admin/css/style.css">
-
     <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
-
     <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
-    <script src="/plugins/jquery/jquery.min.js"></script>
-    <script src="/admin/js/uploadify/jquery.js"></script>
-    <link rel="stylesheet" href="/admin/js/uploadify/uploadify.css">
-    <script src="/admin/js/uploadify/jquery.uploadify.js"></script>
-
-    {{--<script type="text/javascript">--}}
-    {{--function SetIFrameHeight(){--}}
-    {{--var iframeid=document.getElementById("iframe"); //iframe id--}}
-    {{--if (document.getElementById){--}}
-    {{--iframeid.height =document.documentElement.clientHeight;--}}
-    {{--}--}}
-    {{--}--}}
-
-    {{--</script>--}}
-
 </head>
 
 <body class="hold-transition skin-green sidebar-mini" >
@@ -72,14 +54,17 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                            <button type="button" class="btn btn-default" title="新建"  ><i class="fa fa-file-o"></i> 新建</button>
                             <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
 
                             <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                         </div>
                     </div>
                 </div>
-                
+                <form >
+                    <input type="text" name="per_name" placeholder="请输入讲师名称关键字">
+                    <button class="btn btn-default" type="submit">查询</button>
+                </form >
                 <!--工具栏/-->
                 <!--数据列表-->
                 <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
@@ -90,25 +75,35 @@
                         </th>
                         <th class="sorting_asc">讲师ID</th>
                         <th class="sorting">讲师名称</th>
-                        <th class="sorting">讲师添加时间</th>
+                        <th class="sorting">讲师年龄</th>
+                        <th class="sorting">讲师图片</th>
+                        <th class="sorting">讲师课程</th>
+                        <th class="sorting">讲师授课风格</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
+                    @foreach($data as $k=>$v)
                     <tbody>
-                    <tr >
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                    <tr>
+                        <td></td>
+                        <td>{{$v->per_id}}</td>
+                        <td>{{$v->per_name}}</td>
+                        <td>{{$v->per_age}}</td>
+
+                        <td>@if($v->per_img)<img src="{{env('.UPLOAD_URL')}}{{$v->per_img}}" width="50" height="50">@endif</td>
+                        <td>{{$v->cur_id}}</td>
+                        <td>{{$v->per_content}}</td>
                         <td class="text-center">
-                            <button type="button"  id="del">删除</button>
-                            <button type="button"  >修改</button>
+                            <button type="button"  class="btn btn-success" id="del" per_id="{{$v->per_id}}">删除</button>
+                            <button type="button"  class="btn btn-success">
+                                <a href="{{url('/personal/personal_up/'.$v->per_id)}}">修改</a></button>
                         </td>
                     </tr>
-
                     </tbody>
+                        @endforeach
 
                 </table>
+            {{ $data->links() }}
                 <!--数据列表/-->
 
             </div>
@@ -127,15 +122,48 @@
                     <div class="modal-body">
                         <form  id="fileForm" >
 
-                        <table class="table table-bordered table-striped"  width="800px">
-                            <tr>
-                                <td>讲师名称</td>
-                                <td><input  class="form-control" placeholder="" name="" id="">  </td>
-                            </tr>
-                            
-                            
-                           
-                        </table>
+                            <table class="table table-bordered table-striped"  width="800px">
+                                <tr>
+                                    <input type="hidden"  >
+                                    <td>讲师名称</td>
+                                    <td><input  class="form-control" placeholder="讲师名称">  </td>
+                                </tr>
+                                <tr>
+                                    <td>讲师介绍</td>
+                                    <td><textarea id="" placeholder="讲师介绍..."></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td>讲师图片</td>
+                                    <td><input type="file" ></td>
+                                </tr>
+                                <tr>
+                                    <td>讲师家庭住址</td>
+                                    <td><input  class="form-control" placeholder="讲师家庭住址..."  id="per_address" >  </td>
+                                </tr>
+                                <tr>
+                                    <td>讲师年龄</td>
+                                    <td><input  class="form-control" placeholder="讲师年龄...."  id="per_age" >  </td>
+                                </tr>
+                                <tr>
+                                    <td>讲师电话</td>
+                                    <td><input  class="form-control" placeholder="讲师电话...." name="" id="per_tel" >  </td>
+                                </tr>
+                                <tr>
+                                    <td>讲师课程</td>
+                                    <td><select name="" id="">
+                                            <option value="0">选择授课科目</option>
+                                            <option value="1">php</option>
+                                            <option value="2">java</option>
+                                            <option value="3">c++</option>
+                                        </select></td>
+                                </tr>
+                                <tr>
+                                    <td>讲师授课风格</td>
+                                    <td><textarea id="" placeholder="讲师授课风格..."></textarea></td>
+                                </tr>
+
+                            </table>
+                            </form>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">添加</button>
@@ -161,3 +189,5 @@
 </body>
 
 </html>
+
+

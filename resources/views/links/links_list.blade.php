@@ -21,6 +21,14 @@
     <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
+    <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/admin/js/uploadify/jquery.js"></script>
+    <link rel="stylesheet" href="/admin/js/uploadify/uploadify.css">
+    <script src="/admin/js/uploadify/jquery.uploadify.js"></script>
     {{--<script type="text/javascript">--}}
     {{--function SetIFrameHeight(){--}}
     {{--var iframeid=document.getElementById("iframe"); //iframe id--}}
@@ -56,6 +64,7 @@
 
         <div class="box-header with-border">
             <h3 class="box-title">友情链接管理</h3>
+            <h3 class="box-title">资讯管理</h3>
         </div>
 
         <div class="box-body">
@@ -72,6 +81,12 @@
                     </div>
                     <input type="text" id="links_name"  value="">
                     <button class="submit">搜索</button>
+                            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                            <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
+
+                            <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                        </div>
+                    </div>
                 </div>
                 
                 <!--工具栏/-->
@@ -86,6 +101,9 @@
                         <th class="sorting">友情链接名称</th>
                         <th class="sorting">友情链接网址</th>
                         <th class="sorting">是否展示</th>
+                        <th class="sorting_asc">ID</th>
+                        <th class="sorting">名称</th>
+                        <th class="sorting">跳转地址</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
@@ -110,6 +128,16 @@
                 <tr>
                     <td align="center" colspan="7">{{$res->appends(['links_name'=>$links_name])->links()}}</td>       
                 </tr>
+                    <tr >
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td class="text-center">
+                            <button type="button"  id="del">删除</button>
+                            <button type="button"  >修改</button>
+                        </td>
+                    </tr>
                     </tbody>
 
                 </table>
@@ -121,6 +149,32 @@
         <!-- /.box-body -->
 
         <!-- 编辑窗口 -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">资讯 模板编辑</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form  id="fileForm" >
+
+                        <table class="table table-bordered table-striped"  width="800px">
+                            <tr>
+                                <td>资讯名称</td>
+                                <td><input  class="form-control" placeholder="" name="" id="">  </td>
+                            </tr>
+                            
+                            
+                           
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         </body>
 

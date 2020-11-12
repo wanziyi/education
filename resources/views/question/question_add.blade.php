@@ -74,13 +74,22 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                            <button type="button" class="btn btn-default" title="单选新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
                             <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
 
                             <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                         </div>
                     </div>
                 </div>
+
+                <form>
+                <div class="box-tools pull-right">
+                    <div class="has-feedback">
+                        出题内容：<input type="text" name="question_name">
+                        <input type="submit" value="搜索">
+                    </div>
+                </div>
+                </form>
                 
                 <!--工具栏/-->
                 <!--数据列表-->
@@ -90,29 +99,48 @@
                         <th class="" style="padding-right:0px">
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
-                        <th class="sorting_asc">题库ID</th>
-                        <th class="sorting">题库名称</th>
-                        <th class="sorting">题库添加时间</th>
+                        <th class="sorting_asc">题库id</th>
+                        <th class="sorting">出题内容</th>
+                        <th class="sorting">问题答案</th>
+                        <th class="sorting">正确答案</th>
+                        <th class="sorting">题库类型</th>
+                        <th class="sorting">出题时间</th>
+                        <th class="sorting">题目分值</th>
+                        <th class="sorting">问题类型</th>
+                        <th class="sorting">题库编号</th>
+                        <th class="sorting">出题讲师</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr >
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                        @foreach($res as $v)
+                    <tr question_id="{{$v->question_id}}">
+                        <th class="" style="padding-right:0px">
+                            <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                        </th>
+                        <td>{{$v->question_id}}</td>
+                        <td>{{$v->question_name}}</td>
+                        <td>{{$v->question_contents}}</td>
+                        <td>{{$v->question_yescten}}</td>
+                        <td>{{$v->question_ttype}}</td>
+                        <td>{{date("Y-m-d H:i:s"),$v->question_time}}</td> 
+                        <td>{{$v->question_score}}</td>
+                        <td>{{$v->question_type}}</td>
+                        <td>{{$v->question_bian}}</td>
+                        <td>{{$v->per_name}}</td>
                         <td class="text-center">
                             <button type="button"  id="del">删除</button>
-                            <button type="button"  >修改</button>
+                            <button type="button" id="but" class="btn btn-info"><a href="{{url('/question/question_upd?question_id='.$v->question_id)}}">修改</a></button>
 
                         </td>
                     </tr>
+                    @endforeach
 
                     </tbody>
 
                 </table>
                 <!--数据列表/-->
+{{$res->links()}}
 
 
             </div>
@@ -133,20 +161,79 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">题库 模板编辑</h3>
+                        <h3 id="myModalLabel">题库 简答题添加</h3>
                     </div>
                     <div class="modal-body">
                         <form  id="fileForm" >
 
                         <table class="table table-bordered table-striped"  width="800px">
                             <tr>
-                                <td>题库名称</td>
-                                <td><input  class="form-control" placeholder="" name="" id="">  </td>
+                                <td>出题内容</td>
+                                <td><input type="text" class="form-control" placeholder="" name="question_name" id="question_name"></td>
                             </tr>
+
                             
-                            
-                           
+
+                            <tr>
+                                <td>问题答案</td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="" name="question_contents" id="question_contents">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>正确答案</td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="" name="question_yescten" id="question_yescten">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>题库类型</td>
+                                <td>
+                                    <input type="radio"  name="question_ttype" value="PHP" checked id="question_ttype">PHP
+                                    <input type="radio"  name="question_ttype" value="JAVA" id="question_ttype">JAVA
+                                    <input type="radio"  name="question_ttype" value="C++" id="question_ttype">C++
+                                    <input type="radio"  name="question_ttype" value="Pythsn" id="question_ttype">Pythsn
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>题目分值</td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="" name="question_score" id="question_score">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>问题类型</td>
+                                <td>
+                                    <select name="question_type" id="question_type">
+                                        <option value="">--请选择--</option>
+                                        <option value="单选题">单选题</option>
+                                        <option value="多选题">多选题</option>
+                                        <option value="简答题">简答题</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>题库编号</td>
+                                <td><input type="text" class="form-control" placeholder="" name="question_bian" id="question_bian"></td>
+                            </tr>
+
+                            <tr>
+                                <td>讲师</td>
+                                <td>
+                                    <select name="per_id" id="per_id">
+                                        <option value="">--请选择--</option>
+                                        @foreach($per as $v)
+                                        <option value="{{$v->per_id}}">{{$v->per_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
                         </table>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">添加</button>
@@ -172,3 +259,52 @@
 </body>
 
 </html>
+<script>
+$(document).on("click","#button",function(){
+        var question_name=$("#question_name").val();
+        var question_contents=$("#question_contents").val();
+        var question_yescten=$("#question_yescten").val();
+        var question_ttype=$("#question_ttype:checked").val();
+        var question_score=$("#question_score").val();
+        var question_type=$("#question_type").val();
+        var question_bian=$("#question_bian").val();
+        var per_id=$("#per_id").val();
+        // alert(question_ttype);
+        
+        // alert(notice_content);
+        $.ajax({
+            url:'/question/question_add',
+            dataType:'json',
+            type:'POST',
+            async:false,
+            data:{question_name:question_name,question_contents:question_contents,question_yescten:question_yescten,question_ttype:question_ttype,question_score:question_score,question_type:question_type,question_bian:question_bian,per_id:per_id},
+            success:function(res){
+                if(res.code=="1111"){
+                    // alert(res.msg)
+                    window.location.href=res.url;
+                }else{
+                    window.location.href=res.url;
+                }
+            }
+        })
+    })
+$(document).on("click","#del",function(){
+
+        var question_id=$(this).parents("tr").attr("question_id");
+        // alert(question_id);
+    $.ajax({
+        url:"/question/question_del",
+        data:{question_id:question_id},
+        type:"post",
+        dataType:"json",
+        success:function(res){
+            if(res.code=="11111"){
+                // alert(res.msg);
+                window.location.href=res.url;
+            }else{
+                alert(res.msg);
+            }
+        }
+    })
+})
+</script>

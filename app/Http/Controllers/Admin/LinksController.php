@@ -128,5 +128,13 @@ class LinksController extends Controller
 
 
 		}
+
+class LinksController extends Controller
+{
+    public function links_add(){
+    	return view("links.links_add");
+    }
+    public function links_list(){
+    	return view("links.links_list");
     }
 }
