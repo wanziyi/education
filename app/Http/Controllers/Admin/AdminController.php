@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Model\Personal;
 use App\Model\Users;
 use App\Model\Priv;
+use App\Model\RoleModel;
+use App\Model\Rolepriv;
 
 class AdminController extends Controller
 {
@@ -352,6 +354,63 @@ class AdminController extends Controller
         return json_encode($arr);
 
     }
+
+    //rbac -角色权限 -添加
+    public function role_priv()
+    {
+        $Priv = new Priv;
+        $Role = new RoleModel;
+        $priv_data = $Priv::all();
+        $role_data = $Role::all();
+        return view("rbac.role_priv",["priv_data"=>$priv_data,"role_data"=>$role_data]);
+    }
+
+    //rbac -角色权限执行
+    public function role_privDo()
+    {
+        $role_id = request()->role_id;
+        $priv_id = request()->priv_id;
+        $priv_id = implode($priv_id,",");
+        $data = [
+            "role_id"=>$role_id,
+            "priv_id"=>$priv_id,
+            "time"=>time()
+        ];
+        $res = Rolepriv::insert($data);
+        if($res){
+            $arr =
+                [
+                    "code"=>0000,
+                    "msg"=>"Success Ok",
+                    "url"=>"/rbac/role_priv_list"
+                ];
+        }else{
+            $arr =
+                [
+                    "code"=>0001,
+                    "msg"=>"Error No",
+                    "url"=>"/rbac/role_priv"
+                ];
+        }
+        return json_encode($arr);
+    }
+
+    //rbac -角色权限展示
+//    public function role_priv_list()
+//    {
+//
+//        $data = RoleModel::get();
+////        $data = Role_Priv::get();
+////        dd($data);
+//        foreach ($data as $k=>$v){
+//            $role_id = Rolepriv::where("role_id",$v->role_id)->get()->toArray();
+//            dd($role_id);
+//        }
+//        dd($data);
+//        return view("rbac.role_priv_list",["data"=>$data]);
+//    }
+
+
 
 
 

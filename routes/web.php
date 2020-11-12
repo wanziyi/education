@@ -79,9 +79,14 @@ Route::any("/answer/answer_upd_do",'Admin\AdminController@answer_upd_do');//后�
 
 Route::any("/admin/mycourse",'Admin\AdminController@mycourse');//信息展示
 
+
 Route::any("/rbac/priv","Admin\AdminController@priv");//权限
 Route::any("/rbac/privDo","Admin\AdminController@privDo");//权限执行
 Route::any("/rbac/priv_list","Admin\AdminController@priv_list");//权限展示
 Route::any("/rbac/priv_del","Admin\AdminController@priv_del");//权限删除
 Route::any("/rbac/priv_up/{id}","Admin\AdminController@priv_up");//权限修改
 Route::any("/rbac/priv_upDo","Admin\AdminController@priv_upDo");//权限修改执行
+
+Route::any("/rbac/role_priv","Admin\AdminController@role_priv");//角色权限
+Route::any("/rbac/role_privDo","Admin\AdminController@role_privDo");//角色权限执行
+Route::any("/rbac/role_priv_list","Admin\AdminController@role_priv_list");//角色权限执行

@@ -150,6 +150,28 @@
 							</li>
 						</ul>
 					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-folder"></i>
+							<span>角色权限管理</span>
+							<span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+						</a>
+						<ul class="treeview-menu">
+
+							<li id="admin-login">
+								<a href="{{url('/rbac/role_priv')}}" target="iframe">
+									<i class="fa fa-circle-o"></i>角色权限添加
+								</a>
+							</li>
+							<li id="admin-login">
+								<a href="{{url('/rbac/role_priv_list')}}" target="iframe">
+									<i class="fa fa-circle-o"></i>角色权限展示
+								</a>
+							</li>
+						</ul>
+					</li>
 
 
 				    <!-- 菜单 /-->
