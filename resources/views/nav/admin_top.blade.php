@@ -2,9 +2,9 @@
             <!-- Logo -->
             <a href="index.html" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>品优购</b></span>
+                <span class="logo-mini"><b>在线教育</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>品优购-运营商后台</b></span>
+                <span class="logo-lg"><b>在线教育后台</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -216,7 +216,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="/admin/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">测试用户</span>
+                                <span class="hidden-xs">用户</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -224,7 +224,7 @@
                                     <img src="/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                     <p>
-                                       测试用户 - 马小白
+                                       用户 -
                                         <small>最后登录 11:20AM</small>
                                     </p>
                                 </li>
@@ -235,7 +235,7 @@
                                         <a href="#" class="btn btn-default btn-flat">修改密码</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">注销</a>
+                                        <a href="#" class="btn btn-default btn-flat" id="del">注销</a>
                                     </div>
                                 </li>
                             </ul>
@@ -245,3 +245,18 @@
                 </div>
             </nav>
         </header>
+<script>
+    $(document).on("click","#del",function(){
+        $.ajax({
+            url:"{{url('/admin/logindel')}}",
+            type:'POST',
+            dataType:'json',
+            success:function(res){
+                if(res.code==0000){
+                    alert(res.msg)
+                    window.location
+                }
+            }
+        })
+    })
+</script>

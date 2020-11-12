@@ -69,19 +69,14 @@
             <div class="table-box">
 
                 <!--工具栏-->
-                <div class="pull-left">
-                    <div class="form-group form-inline">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                            <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-
-                            <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
-                        </div>
-                    </div>
-                </div>
+              
                 
                 <!--工具栏/-->
                 <!--数据列表-->
+                <form>
+                    <input type="text" name="cur_name">
+                    <input type="submit" value="搜索">
+                </form>
                 <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                     <thead>
                     <tr>
@@ -89,23 +84,33 @@
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
                         <th class="sorting_asc">课程ID</th>
+                        <th class="sorting">课程分类</th>
                         <th class="sorting">课程名称</th>
-                        <th class="sorting">课程添加时间</th>
+                        <th class="sorting">课程总课时</th>
+                        <th class="sorting">课程时长</th>
+                        <th class="sorting">课程简介</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
+                        @foreach($res as $k=>$v)
                     <tr >
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td></td>
+                        <td>{{$v->cur_id}}</td>
+                        <td>{{$v->cate_id}}</td>
+                        <td>{{$v->cur_name}}</td>
+                        <td>{{$v->cur_class}}</td>
+                        <td>{{$v->hour}}</td>
+                        <td>{{$v->cur_content}}</td>
                         <td class="text-center">
-                            <button type="button"  id="del">删除</button>
-                            <button type="button"  >修改</button>
+                            <button type="button"  id="del" cur_id="{{$v->cur_id}}">删除</button>
+                            <button type="button"><a href="{{url('/course/update/'.$v->cur_id)}}">编辑</a></button>
                         </td>
                     </tr>
-
+                        @endforeach
+                         <tr>
+                            <td colspan="6">{{$res->appends($query)->links()}}</td>
+                         </tr>
                     </tbody>
 
                 </table>
@@ -155,9 +160,25 @@
     <!-- 底部导航 -->
     @include("nav.admin_foot")
             <!-- 底部导航 /-->
-
 </div>
-
 </body>
-
 </html>
+<script>
+    $(document).on('click','#del',function(){
+        // alert(11);
+        var cur_id = $(this).attr('cur_id');
+        // console.log(cate_id);
+        $.ajax({
+            url:'/course/del',
+            data:{cur_id:cur_id},
+            type:'post',
+            dataType:'json',
+            success:function(res){
+                if(res.code=='0'){
+                        alert(res.mag)
+                        location.href='/course/course_list'
+                }
+            }
+        })
+    })
+</script>

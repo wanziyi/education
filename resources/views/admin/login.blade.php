@@ -6,7 +6,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 	<title>在线测评与学习平台</title>
-	<link rel="icon" href="../assets/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-login-manage.css" />
 </head>
@@ -20,7 +19,7 @@
 				<ul class="sui-nav nav-tabs tab-wraped">
 					<li>
 						<a href="#index" data-toggle="tab">
-							<h3>扫描登录</h3>
+							<h3>账户登录</h3>
 						</a>
 					</li>
 					<li class="active">
@@ -30,17 +29,13 @@
 					</li>
 				</ul>
 				<div class="tab-content tab-wraped">
-					<div id="index" class="tab-pane">
-						<p>二维码登录，暂为官网二维码</p>
-						<img src="../img/wx_cz.jpg" />
-					</div>
 					<div id="profile" class="tab-pane  active">
 						<form class="sui-form">
 							<div class="input-prepend"><span class="add-on loginname"></span>
 								<input id="prependedInput" type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
 							</div>
 							<div class="input-prepend"><span class="add-on loginpwd"></span>
-								<input id="prependedInput" type="password" placeholder="请输入密码" class="span2 input-xfat">
+								<input id="prependedInputs" type="password" placeholder="请输入密码" class="span2 input-xfat">
 							</div>
 							<div class="setting">
 								 <div id="slider">
@@ -49,7 +44,7 @@
 									</div>
 							</div>
 							<div class="logined">
-								<a class="sui-btn btn-block btn-xlarge btn-danger" href="admin/index.html" target="_blank">登&nbsp;&nbsp;录</a>
+								<a class="sui-btn btn-block btn-xlarge btn-danger" target="_blank" id="but">登&nbsp;&nbsp;录</a>
 							</div>
 						</form>
 
@@ -97,3 +92,25 @@
 </body>
 
 </html>
+
+<script>
+    $(document).on("click","#but",function(){
+        var u_name = $("input[id='prependedInput']").val();
+        var u_pwd = $("input[id='prependedInputs']").val();
+        $.ajax({
+            url:"/admin/logindo",
+            type:'POST',
+            data:{u_name:u_name,u_pwd:u_pwd},
+            dataType:'json',
+            success:function(res){
+				if(res.code==0000){
+				    alert(res.msg);
+				    window.location.href=res.url;
+				}else{
+				    alert(res.msg);
+				    window.location.href=res.url;
+				}
+            }
+        })
+    })
+</script>
