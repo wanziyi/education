@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -54,11 +55,13 @@
 
 {{--//======================================================================================================================--}}
 
+    
+
         <body class="hold-transition skin-red sidebar-mini" >
         <!-- .box-body -->
 
         <div class="box-header with-border">
-            <h3 class="box-title">答案添加管理</h3>
+            <h3 class="box-title">用户作业管理</h3>
         </div>
 
         <div class="box-body">
@@ -70,106 +73,85 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         <div class="btn-group">
+                            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
                             <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
+
                             <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                         </div>
                     </div>
                 </div>
                 
                 <!--工具栏/-->
-                
                 <!--数据列表-->
-                
                 <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
-                
                     <thead>
-                    <form action="">
-                    答案内容 <input type="text" name="ans_text" value="{{$ans_text}}" id="" placeholder="请输入搜索关键字">
-                    <button>搜索</button>
-                </form>
                     <tr>
                         <th class="" style="padding-right:0px">
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
-                        <th class="sorting_asc">问题ID</th>
-                        <th class="sorting">问题名称</th>
-                        <th class="sorting">答案内容</th>
-                        <th class="sorting">答案添加时间</th>
+                        <th class="sorting_asc">用户作业ID</th>
+                        <th class="sorting">用户作业名称</th>
+                        <th class="sorting">用户作业添加时间</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
-                    <tbody>
                     @foreach($data as $v)
-                    <tr>
+                    <tbody>
+                    <tr >
                         <td></td>
-                        <td>{{$v->ans_id}}</td>
-                        <td>{{$v->ans_name}}Java好不好学</td>
-                        <td>{{$v->ans_text}}</td>
-                        <td>{{date("Y-m-d H:i:s",$v->ans_time)}}</td>
+                        <td>{{$v->task_id}}</td>
+                        <td>{{$v->task_name}}</td>
+                        <td>{{date("Y-m-d H:i:s",$v->task_time)}}</td>
                         <td class="text-center">
-                            <button type="button" ans_id="{{$v->ans_id}}" id="del">删除</button>
-                            <button type="button"  ><a href="{{url('/answer/answer_upd/'.$v->ans_id)}}">修改</a></button>
+                            <button type="button"  id="del">删除</button>
+                            <button type="button"  ><a href="{{url('/task/task_upd')}}">修改</a></button>
+
                         </td>
                     </tr>
-                    @endforeach
                     </tbody>
+                    @endforeach
                 </table>
-                {{$data->appends(["ans_text"=>$ans_text])->links()}}
                 <!--数据列表/-->
             </div>
             <!-- 数据表格 /-->
         </div>
         <!-- /.box-body -->
+        <!-- 编辑窗口 -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">用户作业 模板编辑</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form  id="fileForm" >
+
+                        <table class="table table-bordered table-striped"  width="800px">
+                            <tr>
+                                <td>用户作业名称</td>
+                                <td><input  class="form-control" placeholder="" name="" id="task_name">  </td>
+                            </tr> 
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="作业添加">
+                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         </body>
         </html>
         {{--</iframe>--}}
     </div>
     <!-- 内容区域 /-->
-
     <!-- 底部导航 -->
     @include("nav.admin_foot")
-            <!-- 底部导航 /-->
+    <!-- 底部导航 /-->
 </div>
-
 </body>
 </html>
 <script>
-    $(document).on("click","#button",function(){
-            // var ans_name=$("#ans_name").val();
-            var ans_text=$("#ans_text").val();
-            $.ajax({
-                url:'/answer/answer_show',
-                dataType:'json',
-                type:'POST',
-                async:false,
-                data:{ans_text:ans_text},
-                success:function(res){
-                    if(res.code==0000){
-                        alert(res.message)
-                        window.location.href=res.url;
-                    }else{
-                        alert(res.message)
-                    }
-                }
-            })
-        })
-        //删除
-        $(document).on("click","#del",function(){
-            var ans_id = $(this).attr("ans_id");
-            $.ajax({
-                url : "/answer/answer_del",
-                data : {ans_id:ans_id},
-                dataType : "json",
-                type : "post",
-                success:function(res){
-                    if(res.code==00002){
-                        alert(res.message);
-                        window.location.href=res.url
-                    }else{
-                        alert(res.message);
-                        window.location.href=res.url
-                    }
-                }
-            })
-        })
+    $(document).on()
 </script>

@@ -73,19 +73,4 @@ class AdminController extends Controller
     public function personal_upd_do(){
         return view("personal.personal_add");
     }//后台讲师修改执行
-    public function answer_add(){
-        return view("answer.answer_add");
-    }//后台问答添加
-    public function answer_list(){
-        return view("answer.answer_list");
-    }//后台问答展示
-    public function answer_del(){
-        return view("answer.answer_add");
-    }//后台问答删除
-    public function answer_upd(){
-        return view("answer.answer_add");
-    }//后台问答修改
-    public function answer_upd_do(){
-        return view("answer.answer_add");
-    }//后台问答修改执行
 }

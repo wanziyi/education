@@ -37,6 +37,7 @@ Route::any("index/askarea",'Index\IndexController@askarea');//前台问答模块
 
 
 
+
 // ========================================================后台====================================================================
 Route::any("/admin/login",'Admin\AdminController@login');//后台登录
 Route::any("/admin/index",'Admin\AdminController@index');//后台首页
@@ -64,10 +65,40 @@ Route::any("/personal/personal_del",'Admin\AdminController@personal_del');//后�
 Route::any("/personal/personal_upd",'Admin\AdminController@personal_upd');//后台课程修改
 Route::any("/personal/personal_upd_do",'Admin\AdminController@personal_upd_do');//后台课程修改执行
 
-Route::any("/answer/answer_add",'Admin\AdminController@answer_add');//后台问答添加
-Route::any("/answer/answer_list",'Admin\AdminController@answer_list');//后台问答展示
-Route::any("/answer/answer_del",'Admin\AdminController@answer_del');//后台课程删除
-Route::any("/answer/answer_upd",'Admin\AdminController@answer_upd');//后台课程修改
-Route::any("/answer/answer_upd_do",'Admin\AdminController@answer_upd_do');//后台课程修改执行
+Route::any('/answer/answer_store','Admin\AnswerController@answer_store');//
+Route::any("/answer/answer_add",'Admin\AnswerController@answer_add');//后台问答添加
+Route::any("/answer/answer_list",'Admin\AnswerController@answer_list');//后台问答展示
+Route::any("/answer/answer_del",'Admin\AnswerController@answer_del');//后台课程删除
+Route::any("/answer/answer_upd/{ans_id}",'Admin\AnswerController@answer_upd');//后台课程修改
+Route::any("/answer/answer_upd_do",'Admin\AnswerController@answer_upd_do');//后台课程修改执行
+Route::any("/answer/answer_create",'Admin\AnswerController@answer_create');//后台问题列表
+Route::any("/answer/answer_show",'Admin\AnswerController@answer_show');//后台回答展示
+
+Route::any("/note/note_add",'Admin\NoteController@note_add');//后台用户笔记添加
+Route::any("/note/note_list",'Admin\NoteController@note_list');//后台用户笔记展示
+Route::any("/note/note_del",'Admin\NoteController@note_del');//后台用户笔记删除
+Route::any("/note/note_upd",'Admin\NoteController@note_upd');//后台用户笔记修改
+Route::any("/task/task_add",'Admin\TaskController@task_add');//后台用户作业添加
+Route::any("/task/task_list",'Admin\TaskController@task_list');//后台用户作业展示
+Route::any("/task/task_upd",'Admin\TaskController@task_upd');//后台用户作业修改
+
+Route::any("/exam/exam_add",'Admin\ExamController@exam_add');//后台考试添加
+Route::any("/exam/exam_show",'Admin\ExamController@exam_show');//后台考试展示
+Route::any("/exam/paper_show",'Admin\ExamController@paper_show');//后台考卷展示
+Route::any("/exam/add",'Admin\ExamController@add');
+Route::any("/exam/exam_upd/{exam_id}",'Admin\ExamController@exam_upd');//后台考试修改展示
+Route::any("/exam/exam_upd_do",'Admin\ExamController@exam_upd_do');//后台考试修改执行
+Route::any("/exam/exam_del",'Admin\ExamController@exam_del');//后台考试删除
+
+Route::any("/rotation/rotation_add",'Admin\RotationController@rotation_add');//后奥体轮播图添加
+Route::any("/rotation/rotation_show",'Admin\RotationController@rotation_show');//后台轮播图展示
+Route::any("/rotation/add",'Admin\RotationController@add');//后台轮播图
+Route::any("/rotation/rotation_del",'Admin\RotationController@rotation_del');//后台轮播图删除
+Route::any("/rotation/rotation_upd/{rota_id}",'Admin\RotationController@rotation_upd');//后台轮播图修改展示
+Route::any("/rotation/rotation_upd_do",'Admin\RotationController@rotation_upd_do');//后台轮播图修改执行
+Route::any("/rotation/upload",'Admin\RotationController@upload');
+
+
+
 
 
