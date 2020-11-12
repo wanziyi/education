@@ -86,7 +86,7 @@ $(function(){
     <div style="text-align:center;"><img src="/images/0-0.JPG" width="80" ></div>
     <div style="width:220px;text-align:center;">
     <p class="membUpdate mine">某某某</p> 
-    <p class="membUpdate mine"><a href="{{url('index/mysetting')}}">修改信息</a>&nbsp;|&nbsp;<a href="{{url('index/myrepassword')}}">修改密码</a></p>
+    <p class="membUpdate mine"><a href="{{url('index/mycourses')}}">修改信息</a>&nbsp;|&nbsp;<a href="{{url('index/myrepassword')}}">修改密码</a></p>
     <div class="clearh"></div>
     </div>
     </div>

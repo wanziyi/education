@@ -36,13 +36,12 @@
     <div class="content-wrapper">
         {{--<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
 
-{{--//======================================================================================================================--}}
 
         <body class="hold-transition skin-red sidebar-mini" >
         <!-- .box-body -->
 
         <div class="box-header with-border">
-            <h3 class="box-title">讲师管理</h3>
+            <h3 class="box-title">权限管理</h3>
         </div>
 
         <div class="box-body">
@@ -62,7 +61,7 @@
                     </div>
                 </div>
                 <form >
-                    <input type="text" name="per_name" placeholder="请输入讲师名称关键字">
+                    <input type="text" name="priv_name" placeholder="请您先输入您所要搜索的关键字">
                     <button class="btn btn-default" type="submit">查询</button>
                 </form >
                 <!--工具栏/-->
@@ -73,12 +72,9 @@
                         <th class="" style="padding-right:0px">
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
-                        <th class="sorting_asc">讲师ID</th>
-                        <th class="sorting">讲师名称</th>
-                        <th class="sorting">讲师年龄</th>
-                        <th class="sorting">讲师图片</th>
-                        <th class="sorting">讲师课程</th>
-                        <th class="sorting">讲师授课风格</th>
+                        <th class="sorting_asc">权限id</th>
+                        <th class="sorting">权限名称</th>
+                        <th class="sorting">权限路径</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
@@ -86,17 +82,14 @@
                     <tbody>
                     <tr>
                         <td></td>
-                        <td>{{$v->per_id}}</td>
-                        <td>{{$v->per_name}}</td>
-                        <td>{{$v->per_age}}</td>
-
-                        <td>@if($v->per_img)<img src="{{env('.UPLOAD_URL')}}{{$v->per_img}}" width="50" height="50">@endif</td>
-                        <td>{{$v->cur_id}}</td>
-                        <td>{{$v->per_content}}</td>
+                        <td>{{$v->priv_id}}</td>
+                        <td>{{$v->priv_name}}</td>
+                        <td>{{$v->priv_url}}</td>
                         <td class="text-center">
-                            <button type="button"  class="btn btn-success" id="del" per_id="{{$v->per_id}}">删除</button>
+                            <button type="button"  class="btn btn-success" id="del" priv_id="{{$v->priv_id}}">删除</button>
                             <button type="button"  class="btn btn-success">
-                                <a href="{{url('/personal/personal_up/'.$v->per_id)}}">修改</a></button>
+                                <a href="{{url('/rbac/priv_up/'.$v->priv_id)}}">修改</a>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -189,5 +182,25 @@
 </body>
 
 </html>
+<script>
+    $(document).on("click","#del",function(){
+        priv_id = $(this).attr("priv_id");
+        $.ajax({
+            url:"{{url('/rbac/priv_del')}}",
+            type:'POST',
+            data:{priv_id:priv_id},
+            dataType:'json',
+            success:function(res){
+                if(res.code==0000){
+                    alert(res.msg);
+                    window.location.href=res.url;
+                }else{
+                    alert(res.msg);
+                    window.location.href=res.url;
+                }
+            }
+        })
+    })
+</script>
 
 
