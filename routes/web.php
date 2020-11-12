@@ -125,6 +125,7 @@ Route::any("/rbac/priv_del","Admin\AdminController@priv_del");//权限删除
 Route::any("/rbac/priv_up/{id}","Admin\AdminController@priv_up");//权限修改
 Route::any("/rbac/priv_upDo","Admin\AdminController@priv_upDo");//权限修改执行
 
+
 Route::any("/user/user_add",'Admin\UserController@user_add');//后台用户添加
 Route::any("/user/store",'Admin\UserController@store');//后台用户执行添加
 Route::any("/user/user_list",'Admin\UserController@user_list');//后台用户展示
@@ -140,4 +141,9 @@ Route::any("/userrole/del",'Admin\UserroleController@del');//后台用户删除
 Route::any("/userrole/update/{id}",'Admin\UserroleController@update');//后台用户修改
 Route::any("/userrole/updatedo",'Admin\UserroleController@updatedo');//后台用户修改
 
+
+
+Route::any("/rbac/role_priv","Admin\AdminController@role_priv");//角色权限
+Route::any("/rbac/role_privDo","Admin\AdminController@role_privDo");//角色权限执行
+Route::any("/rbac/role_priv_list","Admin\AdminController@role_priv_list");//角色权限执行
 
