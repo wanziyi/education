@@ -53,7 +53,7 @@ class AdminController extends Controller
         return view("info.info_add");
     }//后台资讯删除
     public function info_upd(){
-        return view("info.info_add");
+        return view("info.info_upd");
     }//后台资讯修改
     public function info_upd_do(){
         return view("info.info_add");

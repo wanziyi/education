@@ -41,6 +41,16 @@
 				                    <i class="fa fa-circle-o"></i>课程展示
 				                </a>
 				            </li>
+				            <li id="admin-login">
+				                <a href="{{url('coursedata/coursedata_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>课程资料添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('coursedata/coursedata_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>课程资料展示
+				                </a>
+				            </li>
 				        </ul>                        
 				    </li>
 					<li class="treeview">
@@ -66,7 +76,79 @@
 							
 				        </ul>                        
 				    </li>
+
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>资讯分类管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('infocate/infocate_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>资讯分类添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('infocate/infocate_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>资讯分类展示
+				                </a>
+				            </li>							
+							
+				        </ul>                        
+				    </li>
+
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>导航栏管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('navigation/navigation_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>导航栏添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('navigation/navigation_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>导航栏展示
+				                </a>
+				            </li>							
+							
+				        </ul>                        
+				    </li>
 					
+					<li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>友情链接</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('links/links_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>友情链接添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('links/links_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>友情链接展示
+				                </a>
+				            </li>							
+							
+				        </ul>                        
+				    </li>
+
 					<li class="treeview">
 				        <a href="#">
 				            <i class="fa fa-folder"></i> 
