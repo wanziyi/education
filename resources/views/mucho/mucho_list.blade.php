@@ -52,7 +52,7 @@
 
     <!-- 内容区域 -->
     <div class="content-wrapper">
-        {{--<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
+        {{--<iframe width="100%" id="iframe" name="iframe"  onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
 
 {{--//======================================================================================================================--}}
 
@@ -81,15 +81,6 @@
                         </div>
                     </div>
                 </div>
-
-                <form>
-                <div class="box-tools pull-right">
-                    <div class="has-feedback">
-                        出题内容：<input type="text" name="question_name">
-                        <input type="submit" value="搜索">
-                    </div>
-                </div>
-                </form>
                 
                 <!--工具栏/-->
                 <!--数据列表-->
@@ -130,7 +121,7 @@
                         <td>{{$v->per_name}}</td>
                         <td class="text-center">
                             <button type="button"  id="del">删除</button>
-                            <button type="button" id="but" class="btn btn-info"><a href="{{url('/question/question_upd?question_id='.$v->question_id)}}">修改</a></button>
+                            <button type="button" id="but" class="btn btn-info"><a href="{{url('/mucho/mucho_upd?question_id='.$v->question_id)}}">修改</a></button>
 
                         </td>
                     </tr>
@@ -140,7 +131,7 @@
 
                 </table>
                 <!--数据列表/-->
-{{$res->links()}}
+                {{$res->links()}}
 
 
             </div>
@@ -161,7 +152,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">题库 简答题添加</h3>
+                        <h3 id="myModalLabel">题库 单选题添加</h3>
                     </div>
                     <div class="modal-body">
                         <form  id="fileForm" >
@@ -171,13 +162,13 @@
                                 <td>出题内容</td>
                                 <td><input type="text" class="form-control" placeholder="" name="question_name" id="question_name"></td>
                             </tr>
-
-                            
-
                             <tr>
-                                <td>问题答案</td>
+                                <td>多选题答案</td>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="" name="question_contents" id="question_contents">
+                                    <input  id="question_contents" style="background:#acffff;border:1px solid #ffffff"><br>
+                                    <input  id="question_contentss" style="background:#ffffff;border:1px solid #ffffff"><br>
+                                    <input  id="question_contentsss" style="background:#acaaca;border:1px solid #ffffff"><br>
+                                    <input  id="question_contentssss" style="background:#ffffff;border:1px solid #ffffff"><br>
                                 </td>
                             </tr>
                             <tr>
@@ -263,6 +254,9 @@
 $(document).on("click","#button",function(){
         var question_name=$("#question_name").val();
         var question_contents=$("#question_contents").val();
+        var question_contentss=$("#question_contentss").val();
+        var question_contentsss=$("#question_contentsss").val();
+        var question_contentssss=$("#question_contentssss").val();
         var question_yescten=$("#question_yescten").val();
         var question_ttype=$("#question_ttype:checked").val();
         var question_score=$("#question_score").val();
@@ -273,17 +267,16 @@ $(document).on("click","#button",function(){
         
         // alert(notice_content);
         $.ajax({
-            url:'/question/question_add',
+            url:'/mucho/mucho_add',
             dataType:'json',
             type:'POST',
-            async:false,
-            data:{question_name:question_name,question_contents:question_contents,question_yescten:question_yescten,question_ttype:question_ttype,question_score:question_score,question_type:question_type,question_bian:question_bian,per_id:per_id},
+            data:{question_name:question_name,question_contents:question_contents,question_yescten:question_yescten,question_ttype:question_ttype,question_score:question_score,question_type:question_type,question_bian:question_bian,per_id:per_id,question_contentss:question_contentss,question_contentsss:question_contentsss,question_contentssss:question_contentssss},
             success:function(res){
-                if(res.code=="1111"){
-                    // alert(res.msg)
+                if(res.code=="3333"){
+                    // alert(res.message)
                     window.location.href=res.url;
                 }else{
-                    window.location.href=res.url;
+                    alert(res.message)
                 }
             }
         })
@@ -293,12 +286,12 @@ $(document).on("click","#del",function(){
         var question_id=$(this).parents("tr").attr("question_id");
         // alert(question_id);
     $.ajax({
-        url:"/question/question_del",
+        url:"/mucho/mucho_del",
         data:{question_id:question_id},
         type:"post",
         dataType:"json",
         success:function(res){
-            if(res.code=="11111"){
+            if(res.code=="5555"){
                 // alert(res.msg);
                 window.location.href=res.url;
             }else{

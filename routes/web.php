@@ -48,9 +48,9 @@ Route::any("/course/course_upd_do",'Admin\AdminController@course_upd_do');//后�
 
 Route::any("/question/question_add",'Admin\AdminController@question_add');//后台题库添加
 Route::any("/question/question_list",'Admin\AdminController@question_list');//后台题库展示
-Route::any("/question/question_del",'Admin\AdminController@question_del');//后台课程删除
-Route::any("/question/question_upd",'Admin\AdminController@question_upd');//后台课程修改
-Route::any("/question/question_upd_do",'Admin\AdminController@question_upd_do');//后台课程修改执行
+Route::any("/question/question_del",'Admin\AdminController@question_del');//后台题库删除
+Route::any("/question/question_upd",'Admin\AdminController@question_upd');//后台题库修改
+Route::any("/question/question_upd_do",'Admin\AdminController@question_upd_do');//后台题库修改执行
 
 Route::any("/info/info_add",'Admin\AdminController@info_add');//后台资讯添加
 Route::any("/info/info_list",'Admin\AdminController@info_list');//后台资讯展示
@@ -70,4 +70,27 @@ Route::any("/answer/answer_del",'Admin\AdminController@answer_del');//后台课�
 Route::any("/answer/answer_upd",'Admin\AdminController@answer_upd');//后台课程修改
 Route::any("/answer/answer_upd_do",'Admin\AdminController@answer_upd_do');//后台课程修改执行
 
+Route::any("/exam/exam_add",'Admin\AdminController@exam_add');//后台考试添加
+Route::any("/exam/exam_list",'Admin\AdminController@exam_list');//后台考试展示
+Route::any("/exam/exam_del",'Admin\AdminController@exam_del');//后台考试删除
+Route::any("/exam/exam_upd",'Admin\AdminController@exam_upd');//后台考试修改
+Route::any("/exam/exam_upd_do",'Admin\AdminController@exam_upd_do');//后台考试修改执行
 
+Route::any("/notice/notice_add",'Admin\AdminController@notice_add');//后台公告添加
+Route::any("/notice/notice_list",'Admin\AdminController@notice_list');//后台公告展示
+Route::any("/notice/notice_del",'Admin\AdminController@notice_del');//后台公告删除
+Route::any("/notice/notice_upd",'Admin\AdminController@notice_upd');//后台公告修改
+Route::any("/notice/notice_upd_do",'Admin\AdminController@notice_upd_do');//后台公告修改执行
+
+
+Route::any("/singcho/singcho_add",'Admin\AdminController@singcho_add');//后台单选题添加
+Route::any("/singcho/singcho_list",'Admin\AdminController@singcho_list');//后台单选题展示
+Route::any("/singcho/singcho_del",'Admin\AdminController@singcho_del');//后台单选题删除
+Route::any("/singcho/singcho_upd",'Admin\AdminController@singcho_upd');//后台单选题修改
+Route::any("/singcho/singcho_upd_do",'Admin\AdminController@singcho_upd_do ');//后台单选题修改执行
+
+Route::any("/mucho/mucho_add",'Admin\AdminController@mucho_add');//后台单选题添加
+Route::any("/mucho/mucho_list",'Admin\AdminController@mucho_list');//后台单选题展示
+Route::any("/mucho/mucho_del",'Admin\AdminController@mucho_del');//后台单选题删除
+Route::any("/mucho/mucho_upd",'Admin\AdminController@mucho_upd');//后台单选题修改
+Route::any("/mucho/mucho_upd_do",'Admin\AdminController@mucho_upd_do ');//后台单选题修改执行

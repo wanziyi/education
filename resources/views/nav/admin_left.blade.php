@@ -100,13 +100,18 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login">
-				                <a href="{{url('/question/question_add')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>题库添加
+				                <a href="{{url('/question/question_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>题库管理/简答题添加
+				                </a>
+				            </li>
+				            <li id="admin-login">
+				                <a href="{{url('/singcho/singcho_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>单选题添加
 				                </a>
 				            </li>
 							<li id="admin-login">
-				                <a href="{{url('/question/question_list')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>题库展示
+				                <a href="{{url('/mucho/mucho_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>多选题添加
 				                </a>
 				            </li>
 				        </ul>                        
@@ -129,6 +134,38 @@
 							<li id="admin-login">
 				                <a href="{{url('/answer/answer_list')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>问答展示
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>考试管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				            <li id="admin-login">
+				                <a href="{{url('/exam/exam_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>考试展示
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>公告管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				            <li id="admin-login">
+				                <a href="{{url('/notice/notice_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>公告展示
 				                </a>
 				            </li>
 				        </ul>                        
