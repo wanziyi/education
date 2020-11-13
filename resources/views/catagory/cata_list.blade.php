@@ -94,7 +94,7 @@
                         <td>{{$v->cate_id}}</td>
                         <td class="text-center">
                             <button type="button"  id="del" cata_id="{{$v->cata_id}}">删除</button>
-                            <button type="button"><a href="">修改</a></button>
+                            <button type="button"><a href="{{url('/catagory/update/'.$v->cata_id)}}">编辑</a></button>
                         </td>
                     </tr>
                 @endforeach

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +8,6 @@
     <title>在线教育后台管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-
 
     <link rel="stylesheet" href="/admin/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/AdminLTE.css">
@@ -25,122 +23,72 @@
     <script src="/admin/js/uploadify/jquery.js"></script>
     <link rel="stylesheet" href="/admin/js/uploadify/uploadify.css">
     <script src="/admin/js/uploadify/jquery.uploadify.js"></script>
-
-    {{--<script type="text/javascript">--}}
-    {{--function SetIFrameHeight(){--}}
-    {{--var iframeid=document.getElementById("iframe"); //iframe id--}}
-    {{--if (document.getElementById){--}}
-    {{--iframeid.height =document.documentElement.clientHeight;--}}
-    {{--}--}}
-    {{--}--}}
-
-    {{--</script>--}}
-
 </head>
-
 <body class="hold-transition skin-green sidebar-mini" >
-
-<div class="wrapper">
-
-    <!-- 页面头部 -->
-    @include("nav.admin_top")
-            <!-- 页面头部 /-->
-
-    <!-- 导航侧栏 -->
-    @include("nav.admin_left")
-            <!-- 导航侧栏 /-->
-
-    <!-- 内容区域 -->
-    <div class="content-wrapper">
-        {{--<iframe width="100%" id="iframe" name="iframe"  onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
-
-{{--//======================================================================================================================--}}
-
-    
-
-        <body class="hold-transition skin-red sidebar-mini" >
-        <!-- .box-body -->
-
-        <div class="box-header with-border">
-            <h3 class="box-title">课程目录管理</h3>
-        </div>
-
-        <div class="box-body">
-
-            <!-- 数据表格 -->
-            <div class="table-box">
-
-                <!--工具栏-->
-                <div class="pull-left">
-                    <div class="form-group form-inline">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" title="修改" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 修改</button>
-                            <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-
-                            <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+<!-- 页面头部 -->
+@include("nav.admin_top")
+<!-- 导航侧栏 -->
+@include("nav.admin_left")
+<!-- 内容区域 -->
+<div class="content-wrapper">
+    <!-- 正文区域 -->
+    <div class="box-header with-border">
+    <h1 class="box-title">角色添加</h1>
+</div>
+<section class="content">
+    <div class="box-body">
+        <div class="nav-tabs-custom">
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <div class="row data-type">
+                        <input type="hidden" name="cata_id" value="{{$data->cata_id}}">
+                        <div class="col-md-2 title">目录名称</div>
+                        <div class="col-md-10 data">
+                            <input type="text" class="form-control"  placeholder="目录名称" name="cata_name" id="" value="{{$data->cata_name}}">
+                        </div>
+                        <div class="col-md-2 title">目录分类</div>
+                        <div class="col-md-10 data">
+                            <select name="cate_id" id="">
+                                    @foreach($res as $k=>$v)
+                                    <option value="{{$v->cate_id}}" {{$v->cate_id==$data['cata_id']?'selected':''}}><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
+                                    @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
-                
-                <!--工具栏/-->
-                <!--数据列表-->
-                
-                <!--数据列表/-->
-
-
-            </div>
-            <!-- 数据表格 /-->
-
-        </div>
-        <!-- /.box-body -->
-
-        <!-- 编辑窗口 -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">课程目录 模板编辑</h3>
-                    </div>
-                    <div class="modal-body">
-                        <form  id="fileForm" >
-
-                        <table class="table table-bordered table-striped"  width="800px">
-                            <tr>
-                                <td>目录名称</td>
-                                <td><input  type="text" class="form-control" placeholder="" name="" id="">  </td>
-                            </tr>
-                            <tr>
-                                <td>课程分类</td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value=""></option>
-                                    </select>
-                                </td>
-                            </tr>
-                                                     
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true" id="button">修改</button>
-                    </div>
-                </div>
             </div>
         </div>
-
-        </body>
-
-        </html>
-
-        {{--</iframe>--}}
     </div>
-    <!-- 内容区域 /-->
-
+    <div class="btn-toolbar list-toolbar">
+        <button class="btn btn-primary" id="button"><i class="fa fa-save"></i>修改</button>
+    </div>
+</section>
+    <!-- 正文区域 /-->
     <!-- 底部导航 -->
-    @include("nav.admin_foot")
-            <!-- 底部导航 /-->
 </div>
 </body>
+@include("nav.admin_foot")
 </html>
-
-
+<script>
+    $(document).on('click','#button',function(){
+        // alert(111);
+        var cata_id=$('input[name="cata_id"]').val();
+        var cata_name=$('input[name="cata_name"]').val();
+        var cate_id=$('select[name="cate_id"]').val();
+        // console.log(cata_name);
+        // console.log(cate_id);
+        $.ajax({
+            url:"/catagory/updatedo",
+                data:{cate_id:cate_id,cata_name:cata_name,cata_id:cata_id},
+                type:"post",
+                dataType:"json",
+                success:function(res){
+                    // alert(111);
+                    if(res.code=='0'){
+                        alert(res.mag)
+                        location.href='/catagory/cata_list'
+                    }
+                }
+        })
+    })
+</script>

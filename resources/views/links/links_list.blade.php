@@ -4,6 +4,7 @@
 
 <head>
     <!-- 页面meta -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>在线教育后台管理系统</title>
@@ -17,6 +18,9 @@
     <link rel="stylesheet" href="/admin/css/style.css">
 
     <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
     <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 
@@ -25,7 +29,6 @@
     <script src="/admin/js/uploadify/jquery.js"></script>
     <link rel="stylesheet" href="/admin/js/uploadify/uploadify.css">
     <script src="/admin/js/uploadify/jquery.uploadify.js"></script>
-
     {{--<script type="text/javascript">--}}
     {{--function SetIFrameHeight(){--}}
     {{--var iframeid=document.getElementById("iframe"); //iframe id--}}
@@ -60,6 +63,7 @@
         <!-- .box-body -->
 
         <div class="box-header with-border">
+            <h3 class="box-title">友情链接管理</h3>
             <h3 class="box-title">资讯管理</h3>
         </div>
 
@@ -72,6 +76,11 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         <div class="btn-group">
+                            <a  href="{{url('/links/links_add')}}" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i> 新建</a>
+                        </div>
+                    </div>
+                    <input type="text" id="links_name"  value="">
+                    <button class="submit">搜索</button>
                             <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
                             <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
 
@@ -88,24 +97,35 @@
                         <th class="" style="padding-right:0px">
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
-                        <th class="sorting_asc">ID</th>
-                        <th class="sorting">名称</th>
-                        <th class="sorting">跳转地址</th>
+                        <th class="sorting_asc">友情链接ID</th>
+                        <th class="sorting">友情链接名称</th>
+                        <th class="sorting">友情链接网址</th>
+                        <th class="sorting">是否展示</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr >
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                    @foreach($res as $v)
+                        @if($v->is_del==0)
+                    <tr id="{{$v->links_id}}">
+                        <td><input  type="checkbox"></td>
+                        <td>{{$v->links_id}}</td>
+                        <td>{{$v->links_name}}</td>
+                        <td>{{$v->links_url}}</td>
+                        <td class="changevalue" field="nav_show">{{$v->links_show?'是':'否'}}</td>
                         <td class="text-center">
-                            <button type="button"  id="del">删除</button>
-                            <button type="button"  >修改</button>
+                            <button type="button" class="btn bg-olive btn-xs del">删除</button>
+                            <a href="{{url('links/links_upd/'.$v->links_id)}}">
+                                <button type="button" class="btn bg-olive btn-xs">修改</button>
+                            </a>
                         </td>
                     </tr>
-
+                    @endif
+                @endforeach
+                <tr>
+                    <td align="center" colspan="7">{{$res->appends(['links_name'=>$links_name])->links()}}</td>       
+                </tr>
+              
                     </tbody>
 
                 </table>
@@ -161,3 +181,44 @@
 </body>
 
 </html>
+<script>    
+$(document).ready(function(){
+        $(document).on("click",".del",function(){
+            var _this = $(this);
+            var links_id= _this.parents("tr").prop("id");
+            $.ajax({
+                url:"{{url('links/links_del')}}",
+                data:{links_id:links_id},
+                type:"post",
+                success:function(res){
+                    if(res==1){
+                        alert("删除成功");
+                        _this.parents("tr").remove();
+                        location.href="{{url('links/links_list')}}";
+                    }else{
+                        alert("删除失败");
+                    }
+                }
+
+
+            })
+        });
+
+        $(document).on("click",".submit",function(){
+            var  links_name=$("#links_name").val();//搜索名称
+            var _this=$(this);
+            $.ajax({
+                url:"{{url('links/links_list')}}",
+                type:"post",
+                data:{links_name:links_name},
+                success:function(res){
+                    $("tbody").html(res);
+
+                }
+            })
+                  return;
+        });
+
+    });
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }})
+</script>

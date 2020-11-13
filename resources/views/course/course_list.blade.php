@@ -92,8 +92,9 @@
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
+                    @foreach($res as $k=>$v)
                     <tbody>
-                        @foreach($res as $k=>$v)
+                        
                     <tr >
                         <td></td>
                         <td>{{$v->cur_id}}</td>
@@ -109,7 +110,13 @@
                     </tr>
                         @endforeach
                     </tbody>
-
+                    @endforeach
+                        <tr>
+                            <td colspan="10">{{$res->appends($query)->links()}}</td>
+                        </tr>
+                        
+                            
+                        
                 </table>
                 <!--数据列表/-->
                 {{$res->appends($query)->links()}}

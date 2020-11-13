@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Faker\Provider\ko_KR\Person;
 use Illuminate\Http\Request;
 use App\Http\Model\Notice;
-use App\Http\Model\Personal;
+
 use App\Http\Model\Question;
 use App\Model\Users;
 use App\Model\Priv;
@@ -200,7 +200,7 @@ class AdminController extends Controller
     }//后台资讯删除
 
     public function info_upd(){
-        return view("info.info_add");
+        return view("info.info_upd");
     }//后台资讯修改
 
     public function info_upd_do(){
@@ -282,7 +282,6 @@ class AdminController extends Controller
     public function personal_upd(){
         return view("personal.personal_add");
     }//后台讲师修改
-
 
     public function personal_up($per_id)
     {
@@ -734,22 +733,12 @@ class AdminController extends Controller
             "time"=>time()
         ];
         $res = Rolepriv::insert($data);
+        // dd($res);die;
         if($res){
-            $arr =
-                [
-                    "code"=>0000,
-                    "msg"=>"Success Ok",
-                    "url"=>"/rbac/role_priv_list"
-                ];
-        }else{
-            $arr =
-                [
-                    "code"=>0001,
-                    "msg"=>"Error No",
-                    "url"=>"/rbac/role_priv"
-                ];
+                return['code'=>'0','mag'=>"成功"];
+            }else{
+                return['code'=>'1','mag'=>"失败"];
         }
-        return json_encode($arr);
     }
 
     //rbac -角色权限展示
@@ -770,5 +759,6 @@ class AdminController extends Controller
        // dd($data);
        return view("rbac.role_priv_list",["data"=>$data]);
    }
+
 }
     

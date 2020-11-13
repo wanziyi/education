@@ -96,7 +96,7 @@
                         <td>{{$v->pid}}</td>
                         <td class="text-center">
                             <button type="button"  id="del" cate_id="{{$v->cate_id}}">删除</button>
-                            <button type="button"  >修改</button>
+                            
                         </td>
                     </tr>
                     @endforeach
