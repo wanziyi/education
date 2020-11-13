@@ -379,22 +379,12 @@ class AdminController extends Controller
             "time"=>time()
         ];
         $res = Rolepriv::insert($data);
+        // dd($res);die;
         if($res){
-            $arr =
-                [
-                    "code"=>0000,
-                    "msg"=>"Success Ok",
-                    "url"=>"/rbac/role_priv_list"
-                ];
-        }else{
-            $arr =
-                [
-                    "code"=>0001,
-                    "msg"=>"Error No",
-                    "url"=>"/rbac/role_priv"
-                ];
+                return['code'=>'0','mag'=>"成功"];
+            }else{
+                return['code'=>'1','mag'=>"失败"];
         }
-        return json_encode($arr);
     }
 
     //rbac -角色权限展示
@@ -415,9 +405,5 @@ class AdminController extends Controller
        // dd($data);
        return view("rbac.role_priv_list",["data"=>$data]);
    }
-
-
-
-
 
 }

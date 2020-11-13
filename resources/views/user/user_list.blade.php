@@ -93,8 +93,8 @@
                         <td>{{$v->u_name}}</td>
                         <td><a href="{{url('/userrole/userrole/'.$v->u_id)}}">角色</a></td>
                         <td class="text-center">
-                            <button type="button"  id="del" role_id="{{$v->role_id}}">删除</button>
-                            <button type="button"><a href="{{url('/role/update/'.$v->role_id)}}">编辑</a></button>
+                            <button type="button"  id="del" u_id="{{$v->u_id}}">删除</button>
+                            <button type="button"><a href="{{url('/user/update/'.$v->u_id)}}">编辑</a></button>
                         </td>
                     </tr>
                         @endforeach
@@ -151,4 +151,24 @@
 </div>
 </body>
 </html>
+<script>
+    $(document).on('click','#del',function(){
+        // alert(11);
+        var u_id = $(this).attr('u_id');
+        // console.log(cate_id);
+        $.ajax({
+            url:'/user/del',
+            data:{u_id:u_id},
+            type:'post',
+            dataType:'json',
+            success:function(res){
+                if(res.code=='0'){
+                        alert(res.mag)
+                        location.href='/user/user_list'
+                }
+            }
+        })
+    })
+</script>
+
 
