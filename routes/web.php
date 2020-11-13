@@ -172,15 +172,6 @@ Route::any("/userrole/del",'Admin\UserroleController@del');//后台用户删除
 Route::any("/userrole/update/{id}",'Admin\UserroleController@update');//后台用户修改
 Route::any("/userrole/updatedo",'Admin\UserroleController@updatedo');//后台用户修改
 
-
-
-
-Route::any("/exam/exam_add",'Admin\AdminController@exam_add');//后台考试添加
-Route::any("/exam/exam_list",'Admin\AdminController@exam_list');//后台考试展示
-Route::any("/exam/exam_del",'Admin\AdminController@exam_del');//后台考试删除
-Route::any("/exam/exam_upd",'Admin\AdminController@exam_upd');//后台考试修改
-Route::any("/exam/exam_upd_do",'Admin\AdminController@exam_upd_do');//后台考试修改执行
-
 Route::any("/rbac/role_priv","Admin\AdminController@role_priv");//角色权限
 Route::any("/rbac/role_privDo","Admin\AdminController@role_privDo");//角色权限执行
 Route::any("/rbac/role_priv_list","Admin\AdminController@role_priv_list");//角色权限执行
@@ -196,10 +187,10 @@ Route::any("/singcho/singcho_add",'Admin\AdminController@singcho_add');//后台�
 Route::any("/singcho/singcho_list",'Admin\AdminController@singcho_list');//后台单选题展示
 Route::any("/singcho/singcho_del",'Admin\AdminController@singcho_del');//后台单选题删除
 Route::any("/singcho/singcho_upd",'Admin\AdminController@singcho_upd');//后台单选题修改
-Route::any("/singcho/singcho_upd_do",'Admin\AdminController@singcho_upd_do ');//后台单选题修改执行
+Route::any("/singcho/singcho_upd_do",'Admin\AdminController@singcho_upd_do');//后台单选题修改执行
 
 Route::any("/mucho/mucho_add",'Admin\AdminController@mucho_add');//后台单选题添加
 Route::any("/mucho/mucho_list",'Admin\AdminController@mucho_list');//后台单选题展示
 Route::any("/mucho/mucho_del",'Admin\AdminController@mucho_del');//后台单选题删除
 Route::any("/mucho/mucho_upd",'Admin\AdminController@mucho_upd');//后台单选题修改
-Route::any("/mucho/mucho_upd_do",'Admin\AdminController@mucho_upd_do ');//后台单选题修改执行
+Route::any("/mucho/mucho_upd_do",'Admin\AdminController@mucho_upd_do');//后台单选题修改执行

@@ -7,13 +7,8 @@
                         <img src="/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-<<<<<<< HEAD
                         <p> 测试用户</p>
-                        <a href="{{url('/admin/index')}}"><i class="fa fa-circle text-success"></i> 在线</a>
-=======
-                        <p> 用户</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
->>>>>>> 36670485fb00756dc12624625ea3989ea967d45b
+                        <a href="{{url('/admin/index')}}"><i class="fa fa-circle text-success"></i>在线</a>
                     </div>
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -67,11 +62,9 @@
 				                <a href="{{url('info/info_list')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>资讯展示
 				                </a>
-				            </li>							
-							
+				            </li>	
 				        </ul>                        
 				    </li>
-					
 					<li class="treeview">
 				        <a href="{{url('/admin/index')}}">
 				            <i class="fa fa-folder"></i> 
@@ -156,7 +149,6 @@
 				                </a>
 				            </li>
 				            <li id="admin-login">
-<<<<<<< HEAD
 				                <a href="{{url('/answer/answer_add')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>答案添加
 				                </a>
@@ -184,7 +176,6 @@
 				                </a>
 				            </li>
 			
-=======
 				                <a href="{{url('/admin/mycourse')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>信息展示
 				                </a>
@@ -201,7 +192,6 @@
 						</a>
 						<ul class="treeview-menu">
 
->>>>>>> 36670485fb00756dc12624625ea3989ea967d45b
 							<li id="admin-login">
 				                <a href="{{url('/exam/exam_show')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>考试列表
@@ -237,12 +227,6 @@
 				            </li>
 				        </ul>                        
 				    </li>
-<<<<<<< HEAD
-				    <li class="treeview">
-				        <a href="#">
-				            <i class="fa fa-folder"></i> 
-				            <span>考试管理</span>
-=======
 				     <li class="treeview">
 				        <a href="#">
 				            <i class="fa fa-folder"></i> 
@@ -269,17 +253,14 @@
 				        <a href="#">
 				            <i class="fa fa-folder"></i> 
 				            <span>课程目录管理</span>
->>>>>>> 850756bb1cd59f10134f82b6f74ed4c129bf7f27
 				            <span class="pull-right-container">
 				       			<i class="fa fa-angle-left pull-right"></i>
 				   		 	</span>
 				        </a>
 				        <ul class="treeview-menu">
-<<<<<<< HEAD
 				            <li id="admin-login">
 				                <a href="{{url('/exam/exam_list')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>考试展示
-=======
 				
 				            <li id="admin-login">
 				                <a href="{{url('catagory/cata_add')}}" target="iframe">
@@ -289,7 +270,6 @@
 							<li id="admin-login">
 				                <a href="{{url('catagory/cata_list')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>课程目录展示
->>>>>>> 850756bb1cd59f10134f82b6f74ed4c129bf7f27
 				                </a>
 				            </li>
 				        </ul>                        
@@ -297,22 +277,12 @@
 				    <li class="treeview">
 				        <a href="#">
 				            <i class="fa fa-folder"></i> 
-<<<<<<< HEAD
-				            <span>公告管理</span>
-=======
 				            <span>课程资料管理</span>
->>>>>>> 850756bb1cd59f10134f82b6f74ed4c129bf7f27
 				            <span class="pull-right-container">
 				       			<i class="fa fa-angle-left pull-right"></i>
 				   		 	</span>
 				        </a>
 				        <ul class="treeview-menu">
-<<<<<<< HEAD
-				            <li id="admin-login">
-				                <a href="{{url('/notice/notice_list')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>公告展示
-=======
-				
 				            <li id="admin-login">
 				                <a href="{{url('cd/cd_add')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>课程资料添加
@@ -323,6 +293,23 @@
 				                    <i class="fa fa-circle-o"></i>课程资料展示
 				                </a>
 				            </li>
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>公告管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				            <li id="admin-login">
+				                <a href="{{url('/notice/notice_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>公告展示
+				                </a>
+							</li>
+				            
 				        </ul>                        
 				    </li>
 				    <li class="treeview">
@@ -343,14 +330,11 @@
 							<li id="admin-login">
 				                <a href="{{url('role/role_list')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>角色展示
->>>>>>> 850756bb1cd59f10134f82b6f74ed4c129bf7f27
 				                </a>
 				            </li>
 				        </ul>                        
 				    </li>
-<<<<<<< HEAD
 				    <!-- 菜单 /-->
-=======
 				    <li class="treeview">
 				        <a href="#">
 				            <i class="fa fa-folder"></i> 
@@ -404,7 +388,6 @@
 				   		 	</span>
 						</a>
 						<ul class="treeview-menu">
->>>>>>> 850756bb1cd59f10134f82b6f74ed4c129bf7f27
 
 							<li id="admin-login">
 								<a href="{{url('/rbac/role_priv')}}" target="iframe">
@@ -418,7 +401,6 @@
 							</li>
 						</ul>
 					</li>
-
 				    <!-- 菜单 /-->
                 </ul>
             </section>

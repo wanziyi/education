@@ -108,13 +108,11 @@
                         </td>
                     </tr>
                         @endforeach
-                         <tr>
-                            <td colspan="6">{{$res->appends($query)->links()}}</td>
-                         </tr>
                     </tbody>
 
                 </table>
                 <!--数据列表/-->
+                {{$res->appends($query)->links()}}
 
             </div>
             <!-- 数据表格 /-->
