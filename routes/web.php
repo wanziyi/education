@@ -90,3 +90,8 @@ Route::any("/rbac/priv_upDo","Admin\AdminController@priv_upDo");//权限修改�
 Route::any("/rbac/role_priv","Admin\AdminController@role_priv");//角色权限
 Route::any("/rbac/role_privDo","Admin\AdminController@role_privDo");//角色权限执行
 Route::any("/rbac/role_priv_list","Admin\AdminController@role_priv_list");//角色权限执行
+
+Route::any("/task/user_job","Admin\AdminController@user_job");//用户作业
+Route::any("/task/jobDo","Admin\AdminController@jobDo");//用户作业执行
+Route::any("/task/user_job_list","Admin\AdminController@user_job_list");//用户作业执行
+Route::any("/task/user_job_del","Admin\AdminController@user_job_del");//用户删除

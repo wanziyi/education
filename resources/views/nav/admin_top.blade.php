@@ -254,7 +254,7 @@
             success:function(res){
                 if(res.code==0000){
                     alert(res.msg)
-                    window.location
+                    window.location.href=res.url;
                 }
             }
         })

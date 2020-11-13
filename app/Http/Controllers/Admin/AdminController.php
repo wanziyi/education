@@ -10,6 +10,8 @@ use App\Model\Users;
 use App\Model\Priv;
 use App\Model\RoleModel;
 use App\Model\Rolepriv;
+use App\Model\Curriculum;
+use App\Model\Task;
 
 class AdminController extends Controller
 {
@@ -48,25 +50,25 @@ class AdminController extends Controller
         return json_encode($arr);
     }//登录执行
 
-//    public function logindel()
-//    {
-//        $res = session(["data"=>null]);
-//        if($res == ''){
-//            $arr = [
-//                "code"=>0000,
-//                "msg"=>"Success OK",
-//                "url"=>"/admin/login"
-//            ];
-//            return json_encode($arr);
-//        }else{
-//            $arr = [
-//                "code"=>0001,
-//                "msg"=>"Error NO",
-//                "url"=>"/admin/index"
-//            ];
-//            return json_encode($arr);
-//        }
-//    }  //退出登录
+    public function logindel()
+    {
+        $res = session(["data"=>null]);
+        if($res == ''){
+            $arr = [
+                "code"=>0000,
+                "msg"=>"Success OK",
+                "url"=>"/admin/login"
+            ];
+            return json_encode($arr);
+        }else{
+            $arr = [
+                "code"=>0001,
+                "msg"=>"Error NO",
+                "url"=>"/admin/index"
+            ];
+            return json_encode($arr);
+        }
+    }  //退出登录
 
     public function index(){
         return view("admin.index");
@@ -395,20 +397,80 @@ class AdminController extends Controller
         return json_encode($arr);
     }
 
-    //rbac -角色权限展示
-//    public function role_priv_list()
-//    {
-//
-//        $data = RoleModel::get();
-////        $data = Role_Priv::get();
-////        dd($data);
-//        foreach ($data as $k=>$v){
-//            $role_id = Rolepriv::where("role_id",$v->role_id)->get()->toArray();
-//            dd($role_id);
-//        }
-//        dd($data);
-//        return view("rbac.role_priv_list",["data"=>$data]);
-//    }
+    //用户作业
+    public function user_job()
+    {
+        $curriculum = new Curriculum;
+        $cur_data = $curriculum::all();
+        return view("task.user_job",["cur_data"=>$cur_data]);
+    }
+
+    //用户作业执行
+    public function  jobDo()
+    {
+        $data = request()->all();
+        $data["task_time"] = time();
+        $task = new Task;
+        $res = $task::insert($data);
+        if($res){
+            $arr =
+                [
+                    "code"=>0000,
+                    "msg"=>"Success Ok",
+                    "url"=>"/task/user_job_list"
+                ];
+        }else{
+            $arr =
+                [
+                    "code"=>0001,
+                    "msg"=>"Error No",
+                    "url"=>"/task/user_job"
+                ];
+        }
+        return json_encode($arr);
+    }
+
+    //用户作业展示
+    public function user_job_list()
+    {
+        $task = new Task;
+        $where = [
+            "task_del"=>0
+        ];
+        $data = $task::where($where)->
+        leftjoin("users","users.u_id","=","task.u_id")
+            ->leftjoin("curriculum","curriculum.cur_id","=","task.cur_id")->paginate(3);
+        return view("task.user_job_list",["data"=>$data]);
+    }
+
+    //用户作业删除
+    public function user_job_del()
+    {
+        $task_id = request()->task_id;
+        $task = new Task;
+        $res = $task::where(["task_id"=>$task_id])->update(["task_del"=>1]);
+        if($res){
+            $arr =
+                [
+                    "code"=>00000,
+                    "msg"=>"删除 Ok",
+                    "url"=>"/task/user_job_list"
+                ];
+        }else{
+            $arr =
+                [
+                    "code"=>00001,
+                    "msg"=>"删除 No",
+                    "url"=>"/task/user_job_list"
+                ];
+        }
+        return json_encode($arr);
+
+    }
+
+
+
+
 
 
 
