@@ -39,6 +39,7 @@ Route::any("index/askarea",'Index\IndexController@askarea');//前台问答模块
 
 
 
+
 // ========================================================后台====================================================================
 Route::any("/admin/login",'Admin\AdminController@login');//后台登录
 Route::any("/admin/logindo",'Admin\AdminController@logindo');//后台登录
@@ -60,17 +61,29 @@ Route::any("/category/del",'Admin\CategoryController@del');//后台课程分类�
 
 
 
+Route::any("/coursedata/coursedata_add",'Admin\CoursedataController@coursedata_add');//后台课程资料添加
+Route::any("/coursedata/coursedata_list",'Admin\CoursedataController@coursedata_list');//后台课程资料展示
+Route::any("/coursedata/coursedata_del",'Admin\CoursedataController@coursedata_del');//后台课程资料删除
+Route::any("/coursedata/coursedata_upd/{cd_id}",'Admin\CoursedataController@coursedata_upd');//后台课程资料修改
+Route::any("/coursedata/coursedata_upd_do",'Admin\CoursedataController@coursedata_upd_do');//后台课程资料修改执行
+
 Route::any("/question/question_add",'Admin\AdminController@question_add');//后台题库添加
 Route::any("/question/question_list",'Admin\AdminController@question_list');//后台题库展示
-Route::any("/question/question_del",'Admin\AdminController@question_del');//后台课程删除
-Route::any("/question/question_upd",'Admin\AdminController@question_upd');//后台课程修改
-Route::any("/question/question_upd_do",'Admin\AdminController@question_upd_do');//后台课程修改执行
+Route::any("/question/question_del",'Admin\AdminController@question_del');//后台题库删除
+Route::any("/question/question_upd",'Admin\AdminController@question_upd');//后台题库修改
+Route::any("/question/question_upd_do",'Admin\AdminController@question_upd_do');//后台题库修改执行
 
-Route::any("/info/info_add",'Admin\AdminController@info_add');//后台资讯添加
-Route::any("/info/info_list",'Admin\AdminController@info_list');//后台资讯展示
-Route::any("/info/info_del",'Admin\AdminController@info_del');//后台课程删除
-Route::any("/info/info_upd",'Admin\AdminController@info_upd');//后台课程修改
-Route::any("/info/info_upd_do",'Admin\AdminController@info_upd_do');//后台课程修改执行
+Route::any("/info/info_add",'Admin\InfoController@info_add');//后台资讯添加
+Route::any("/info/info_list",'Admin\InfoController@info_list');//后台资讯展示
+Route::any("/info/info_del",'Admin\InfoController@info_del');//后台资讯删除
+Route::any("/info/info_upd/{info_id}",'Admin\InfoController@info_upd');//后台资讯修改
+Route::any("/info/info_upd_do",'Admin\InfoController@info_upd_do');//后台资讯修改执行
+
+Route::any("/infocate/infocate_add",'Admin\InfocateController@infocate_add');//后台资讯分类添加
+Route::any("/infocate/infocate_list",'Admin\InfocateController@infocate_list');//后台资讯分类展示
+Route::any("/infocate/infocate_del",'Admin\InfocateController@infocate_del');//后台资讯分类删除
+Route::any("/infocate/infocate_upd/{cate_id}",'Admin\InfocateController@infocate_upd');//后台资讯分类修改
+Route::any("/infocate/infocate_upd_do",'Admin\InfocateController@infocate_upd_do');//后台资讯分类修改执行
 
 Route::any("/personal/personal_add",'Admin\AdminController@personal_add');//后台讲师添加
 Route::any("/personal/personal_uploade",'Admin\AdminController@personal_uploade');//文件上传
@@ -81,11 +94,41 @@ Route::any("/personal/personal_del",'Admin\AdminController@personal_del');//后�
 Route::any("/personal/personal_up/{per_id}",'Admin\AdminController@personal_up');//后台课程修改
 Route::any("/personal/personal_upd_do",'Admin\AdminController@personal_upd_do');//后台课程修改执行
 
-Route::any("/answer/answer_add",'Admin\AdminController@answer_add');//后台问答添加
-Route::any("/answer/answer_list",'Admin\AdminController@answer_list');//后台问答展示
-Route::any("/answer/answer_del",'Admin\AdminController@answer_del');//后台课程删除
-Route::any("/answer/answer_upd",'Admin\AdminController@answer_upd');//后台课程修改
-Route::any("/answer/answer_upd_do",'Admin\AdminController@answer_upd_do');//后台课程修改执行
+Route::any('/answer/answer_store','Admin\AnswerController@answer_store');//
+Route::any("/answer/answer_add",'Admin\AnswerController@answer_add');//后台问答添加
+Route::any("/answer/answer_list",'Admin\AnswerController@answer_list');//后台问答展示
+Route::any("/answer/answer_del",'Admin\AnswerController@answer_del');//后台课程删除
+Route::any("/answer/answer_upd/{ans_id}",'Admin\AnswerController@answer_upd');//后台课程修改
+Route::any("/answer/answer_upd_do",'Admin\AnswerController@answer_upd_do');//后台课程修改执行
+Route::any("/answer/answer_create",'Admin\AnswerController@answer_create');//后台问题列表
+Route::any("/answer/answer_show",'Admin\AnswerController@answer_show');//后台回答展示
+
+Route::any("/note/note_add",'Admin\NoteController@note_add');//后台用户笔记添加
+Route::any("/note/note_list",'Admin\NoteController@note_list');//后台用户笔记展示
+Route::any("/note/note_del",'Admin\NoteController@note_del');//后台用户笔记删除
+Route::any("/note/note_upd",'Admin\NoteController@note_upd');//后台用户笔记修改
+Route::any("/task/task_add",'Admin\TaskController@task_add');//后台用户作业添加
+Route::any("/task/task_list",'Admin\TaskController@task_list');//后台用户作业展示
+Route::any("/task/task_upd",'Admin\TaskController@task_upd');//后台用户作业修改
+
+Route::any("/exam/exam_add",'Admin\ExamController@exam_add');//后台考试添加
+Route::any("/exam/exam_show",'Admin\ExamController@exam_show');//后台考试展示
+Route::any("/exam/paper_show",'Admin\ExamController@paper_show');//后台考卷展示
+Route::any("/exam/add",'Admin\ExamController@add');
+Route::any("/exam/exam_upd/{exam_id}",'Admin\ExamController@exam_upd');//后台考试修改展示
+Route::any("/exam/exam_upd_do",'Admin\ExamController@exam_upd_do');//后台考试修改执行
+Route::any("/exam/exam_del",'Admin\ExamController@exam_del');//后台考试删除
+
+Route::any("/rotation/rotation_add",'Admin\RotationController@rotation_add');//后奥体轮播图添加
+Route::any("/rotation/rotation_show",'Admin\RotationController@rotation_show');//后台轮播图展示
+Route::any("/rotation/add",'Admin\RotationController@add');//后台轮播图
+Route::any("/rotation/rotation_del",'Admin\RotationController@rotation_del');//后台轮播图删除
+Route::any("/rotation/rotation_upd/{rota_id}",'Admin\RotationController@rotation_upd');//后台轮播图修改展示
+Route::any("/rotation/rotation_upd_do",'Admin\RotationController@rotation_upd_do');//后台轮播图修改执行
+Route::any("/rotation/upload",'Admin\RotationController@upload');
+
+
+
 
 
 Route::any("/links/links_add",'Admin\LinksController@links_add');//后台友情链接添加
@@ -144,7 +187,50 @@ Route::any("/userrole/updatedo",'Admin\UserroleController@updatedo')->middleware
 
 
 
+
 Route::any("/rbac/role_priv","Admin\AdminController@role_priv")->middleware('rbac');//角色权限
 Route::any("/rbac/role_privDo","Admin\AdminController@role_privDo")->middleware('rbac');//角色权限执行
 Route::any("/rbac/role_priv_list","Admin\AdminController@role_priv_list")->middleware('rbac');//角色权限执行
 
+
+Route::any("/exam/exam_add",'Admin\AdminController@exam_add');//后台考试添加
+Route::any("/exam/exam_list",'Admin\AdminController@exam_list');//后台考试展示
+Route::any("/exam/exam_del",'Admin\AdminController@exam_del');//后台考试删除
+Route::any("/exam/exam_upd",'Admin\AdminController@exam_upd');//后台考试修改
+Route::any("/exam/exam_upd_do",'Admin\AdminController@exam_upd_do');//后台考试修改执行
+
+Route::any("/rbac/role_priv","Admin\AdminController@role_priv");//角色权限
+Route::any("/rbac/role_privDo","Admin\AdminController@role_privDo");//角色权限执行
+Route::any("/rbac/role_priv_list","Admin\AdminController@role_priv_list");//角色权限执行
+
+
+Route::any("/notice/notice_add",'Admin\AdminController@notice_add');//后台公告添加
+Route::any("/notice/notice_list",'Admin\AdminController@notice_list');//后台公告展示
+Route::any("/notice/notice_del",'Admin\AdminController@notice_del');//后台公告删除
+Route::any("/notice/notice_upd",'Admin\AdminController@notice_upd');//后台公告修改
+Route::any("/notice/notice_upd_do",'Admin\AdminController@notice_upd_do');//后台公告修改执行
+
+
+Route::any("/navigation/navigation_add",'Admin\NavController@navigation_add');//后台导航栏添加
+Route::any("/navigation/navigation_list",'Admin\NavController@navigation_list');//后台导航栏展示
+Route::any("/navigation/navigation_del",'Admin\NavController@navigation_del');//后台导航栏删除
+Route::any("/navigation/navigation_upd/{nav_id}",'Admin\NavController@navigation_upd');//后台导航栏修改
+Route::any("/navigation/navigation_upd_do",'Admin\NavController@navigation_upd_do');//后台导航栏修改执行
+
+Route::any("/links/links_add",'Admin\LinksController@links_add');//友情链接添加
+Route::any("/links/links_list",'Admin\LinksController@links_list');//友情链接展示
+Route::any("/links/links_del",'Admin\LinksController@links_del');//友情链接删除
+Route::any("/links/links_upd/{links_id}",'Admin\LinksController@links_upd');//友情链接修改
+Route::any("/links/links_upd_do",'Admin\LinksController@links_upd_do');//友情链接修改执行
+
+Route::any("/singcho/singcho_add",'Admin\AdminController@singcho_add');//后台单选题添加
+Route::any("/singcho/singcho_list",'Admin\AdminController@singcho_list');//后台单选题展示
+Route::any("/singcho/singcho_del",'Admin\AdminController@singcho_del');//后台单选题删除
+Route::any("/singcho/singcho_upd",'Admin\AdminController@singcho_upd');//后台单选题修改
+Route::any("/singcho/singcho_upd_do",'Admin\AdminController@singcho_upd_do ');//后台单选题修改执行
+
+Route::any("/mucho/mucho_add",'Admin\AdminController@mucho_add');//后台单选题添加
+Route::any("/mucho/mucho_list",'Admin\AdminController@mucho_list');//后台单选题展示
+Route::any("/mucho/mucho_del",'Admin\AdminController@mucho_del');//后台单选题删除
+Route::any("/mucho/mucho_upd",'Admin\AdminController@mucho_upd');//后台单选题修改
+Route::any("/mucho/mucho_upd_do",'Admin\AdminController@mucho_upd_do ');//后台单选题修改执行

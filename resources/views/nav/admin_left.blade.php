@@ -22,6 +22,108 @@
 
 				    <!-- 菜单 -->
 				    <li class="treeview">
+				        <a href="{{url('/admin/index')}}">
+				            <i class="fa fa-folder"></i> 
+				            <span>题库模块</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('/question/question_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>题库管理/简答题添加
+				                </a>
+				            </li>
+				            <li id="admin-login">
+				                <a href="{{url('/singcho/singcho_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>单选题添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('/mucho/mucho_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>多选题添加
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
+				        <a href="{{url('/admin/index')}}">
+				            <i class="fa fa-folder"></i> 
+				            <span>用户管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				
+				            <li id="admin-login">
+				                <a href="{{url('/personal/personal_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>讲师添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('/personal/personal_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>讲师展示
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('/note/note_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>用户笔记展示				                </a>
+				            </li>
+							
+							<li id="admin-login">
+				                <a href="{{url('/task/task_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>用户作业添加
+				                </a>
+				            </li>
+							<li id="admin-login">
+				                <a href="{{url('/task/task_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>用户作业展示
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				  <li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-folder"></i> 
+				            <span>公告管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+				            <li id="admin-login">
+				                <a href="{{url('/notice/notice_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>公告展示
+				                </a>
+							</li>
+				            
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
+				        <a href="{{url('/admin/index')}}">
+				            <i class="fa fa-folder"></i> 
+				            <span>问答管理</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+				        </a>
+				        <ul class="treeview-menu">
+							<li id="admin-login">
+				                <a href="{{url('/answer/answer_create')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>问题列表
+				                </a>
+				            </li>
+				            <li id="admin-login">
+				                <a href="{{url('/answer/answer_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>答案添加
+				                </a>
+				            </li>
+				        </ul>                        
+				    </li>
+				    <li class="treeview">
 				        <a href="#">
 				            <i class="fa fa-folder"></i> 
 				            <span>课程管理</span>
@@ -92,7 +194,7 @@
 					<li class="treeview">
 				        <a href="#">
 				            <i class="fa fa-folder"></i> 
-				            <span>题库模块</span>
+				            <span>资讯分类管理</span>
 				            <span class="pull-right-container">
 				       			<i class="fa fa-angle-left pull-right"></i>
 				   		 	</span>
@@ -100,49 +202,16 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login">
-				                <a href="{{url('/question/question_add')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>题库添加
+				                <a href="{{url('infocate/infocate_add')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>资讯分类添加
 				                </a>
 				            </li>
 							<li id="admin-login">
-				                <a href="{{url('/question/question_list')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>题库展示
+				                <a href="{{url('infocate/infocate_list')}}" target="iframe">
+				                    <i class="fa fa-circle-o"></i>资讯分类展示
 				                </a>
-				            </li>
-				        </ul>                        
-				    </li>
-					<li class="treeview">
-				        <a href="#">
-				            <i class="fa fa-folder"></i> 
-				            <span>用户信息</span>
-				            <span class="pull-right-container">
-				       			<i class="fa fa-angle-left pull-right"></i>
-				   		 	</span>
-				        </a>
-				        <ul class="treeview-menu">
-				
-				            <li id="admin-login">
-				                <a href="{{url('/admin/mycourse')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>信息展示
-				                </a>
-				            </li>
-				        </ul>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-folder"></i>
-							<span>权限管理</span>
-							<span class="pull-right-container">
-				       			<i class="fa fa-angle-left pull-right"></i>
-				   		 	</span>
-						</a>
-						<ul class="treeview-menu">
-
-							<li id="admin-login">
-				                <a href="{{url('/answer/answer_list')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>问答展示
-				                </a>
-				            </li>
+				            </li>							
+							
 				        </ul>                        
 				    </li>
 				    <li class="treeview">
