@@ -91,6 +91,7 @@
                         <th class="sorting_asc">信息ID</th>
                         <th class="sorting">昵称</th>
                         <th class="sorting">头像</th>
+                        <th class="sorting">角色权限</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
@@ -98,7 +99,18 @@
                     <tr >
                         <td>1</td>
                         <td>1</td>
+                        <td>李琴</td>
                         <td>1</td>
+                        <td>角色</td>
+                        <td class="text-center">
+                            <button type="button"  id="del">删除</button>
+                            <button type="button"  data-toggle="modal" data-target="#editModal" >修改</button>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td>1</td>
+                        <td>1</td>
+                        <td>张严</td>
                         <td>1</td>
                         <td class="text-center">
                             <button type="button"  id="del">删除</button>

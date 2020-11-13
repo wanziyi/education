@@ -82,10 +82,10 @@
             success:function(res){
                 if(res.code==0000){
                     alert(res.msg);
-//                    window.location.href=res.url;
+                    window.location.href=res.url;
                 }else{
                     alert(res.msg);
-//                    window.location.href=res.url;
+                    window.location.href=res.url;
                 }
             }
         })

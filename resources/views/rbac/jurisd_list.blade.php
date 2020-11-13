@@ -36,7 +36,6 @@
     <div class="content-wrapper">
         {{--<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()" frameborder="0" src="home.html">--}}
 
-{{--//======================================================================================================================--}}
 
         <body class="hold-transition skin-red sidebar-mini" >
         <!-- .box-body -->

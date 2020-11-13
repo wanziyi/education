@@ -69,25 +69,26 @@
                         <th class="" style="padding-right:0px">
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
-                        <th class="sorting_asc">权限id</th>
+                        <th class="sorting">角色名称</th>
                         <th class="sorting">权限名称</th>
-                        <th class="sorting">权限路径</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
 
                     <tbody>
+                        @foreach($data as $k=>$v)
                     <tr>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$v->role_name}}</td>
+                        <td>{{rtrim($v->res,",")}}</td>
                         <td class="text-center">
                             <button type="button"  class="btn btn-success" id="del">删除</button>
                             <button type="button"  class="btn btn-success">
-                                {{--<a href="{{url('/rbac/priv_up/'.$v->priv_id)}}">修改</a>--}}
+                               <a href="{{url('/rbac/priv_up/'.$v->priv_id)}}">修改</a>
                             </button>
                         </td>
                     </tr>
+                    @endforeach
                     </tbody>
 
 

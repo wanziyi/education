@@ -4,6 +4,7 @@
 
 <head>
     <!-- 页面meta -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>在线教育后台管理系统</title>
@@ -17,15 +18,9 @@
     <link rel="stylesheet" href="/admin/css/style.css">
 
     <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
-    <script src="/plugins/jquery/jquery.min.js"></script>
-    <script src="/admin/js/uploadify/jquery.js"></script>
-    <link rel="stylesheet" href="/admin/js/uploadify/uploadify.css">
-    <script src="/admin/js/uploadify/jquery.uploadify.js"></script>
-
     {{--<script type="text/javascript">--}}
     {{--function SetIFrameHeight(){--}}
     {{--var iframeid=document.getElementById("iframe"); //iframe id--}}
@@ -72,12 +67,12 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                            <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-
-                            <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                            <a  href="{{url('/info/info_add')}}" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i> 新建</a>
                         </div>
                     </div>
+                    <input type="text" id="info_name"  value="">
+                    <button class="submit">搜索</button>
+                    
                 </div>
                 
                 <!--工具栏/-->
@@ -89,23 +84,33 @@
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
                         <th class="sorting_asc">资讯ID</th>
-                        <th class="sorting">资讯名称</th>
+                        <th class="sorting">资讯标题</th>
+                        <th class="sorting">资讯内容</th>
                         <th class="sorting">资讯添加时间</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr >
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                    @foreach($res as $v)
+                        @if($v->is_del==0)
+                    <tr id="{{$v->info_id}}">
+                        <td><input  type="checkbox"></td>
+                        <td>{{$v->info_id}}</td>
+                        <td>{{$v->info_name}}</td>
+                        <td>{{$v->info_content}}</td>
+                        <td>{{date("Y-m-d H:i:s",$v->add_time)}}</td>
                         <td class="text-center">
-                            <button type="button"  id="del">删除</button>
-                            <button type="button"  >修改</button>
+                            <button type="button" class="btn bg-olive btn-xs del">删除</button>
+                            <a href="{{url('info/info_upd/'.$v->info_id)}}">
+                                <button type="button" class="btn bg-olive btn-xs">修改</button>
+                            </a>
                         </td>
                     </tr>
-
+                    @endif
+                @endforeach
+                <tr>
+                    <td align="center" colspan="7">{{$res->appends(['info_name'=>$info_name])->links()}}</td>       
+                </tr>
                     </tbody>
 
                 </table>
@@ -117,32 +122,6 @@
         <!-- /.box-body -->
 
         <!-- 编辑窗口 -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">资讯 模板编辑</h3>
-                    </div>
-                    <div class="modal-body">
-                        <form  id="fileForm" >
-
-                        <table class="table table-bordered table-striped"  width="800px">
-                            <tr>
-                                <td>资讯名称</td>
-                                <td><input  class="form-control" placeholder="" name="" id="">  </td>
-                            </tr>
-                            
-                            
-                           
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">添加</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         </body>
 
@@ -161,3 +140,47 @@
 </body>
 
 </html>
+<script>    
+$(document).ready(function(){
+        $(document).on("click",".del",function(){
+            var _this = $(this);
+            var info_id= _this.parents("tr").prop("id");
+            //alert(info_id);
+            $.ajax({
+                url:"{{url('info/info_del')}}",
+                data:{info_id:info_id},
+                type:"post",
+                success:function(res){
+                    if(res==1){
+                        alert("咨询删除成功");
+                        _this.parents("tr").remove();
+                        location.href="{{url('info/info_list')}}";
+                    }else{
+                        alert("咨询删除失败");
+                    }
+                }
+
+
+            })
+        });
+
+        $(document).on("click",".submit",function(){
+            var  info_name=$("#info_name").val();//搜索名称
+            var _this=$(this);
+            $.ajax({
+                url:"{{url('info/info_list')}}",
+                type:"post",
+                data:{info_name:info_name},
+                success:function(res){
+                    $("tbody").html(res);
+
+                }
+            })
+                  return;
+        });
+
+        
+
+    });
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }})
+</script>

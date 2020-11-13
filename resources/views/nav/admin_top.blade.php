@@ -2,9 +2,9 @@
             <!-- Logo -->
             <a href="index.html" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>品优购</b></span>
+                <span class="logo-mini"><b>在线教育</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>品优购-运营商后台</b></span>
+                <span class="logo-lg"><b>在线教育后台</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -245,18 +245,18 @@
                 </div>
             </nav>
         </header>
-<script>
-    $(document).on("click","#del",function(){
-        $.ajax({
-            url:"{{url('/admin/logindel')}}",
-            type:'POST',
-            dataType:'json',
-            success:function(res){
-                if(res.code==0000){
-                    alert(res.msg)
-                    window.location.href=res.url;
-                }
-            }
-        })
-    })
-</script>
+{{--<script>--}}
+    {{--$(document).on("click","#del",function(){--}}
+        {{--$.ajax({--}}
+            {{--url:"{{url('/admin/logindel')}}",--}}
+            {{--type:'POST',--}}
+            {{--dataType:'json',--}}
+            {{--success:function(res){--}}
+                {{--if(res.code==0000){--}}
+                    {{--alert(res.msg)--}}
+                    {{--window.location.href=res.url;--}}
+                {{--}--}}
+            {{--}--}}
+        {{--})--}}
+    {{--})--}}
+{{--</script>--}}

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -10,21 +9,17 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
 
-
     <link rel="stylesheet" href="/admin/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/admin/css/style.css">
 
     <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
+
     <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
-    <script src="/plugins/jquery/jquery.min.js"></script>
-    <script src="/admin/js/uploadify/jquery.js"></script>
-    <link rel="stylesheet" href="/admin/js/uploadify/uploadify.css">
-    <script src="/admin/js/uploadify/jquery.uploadify.js"></script>
+
 
     {{--<script type="text/javascript">--}}
     {{--function SetIFrameHeight(){--}}
@@ -60,7 +55,7 @@
         <!-- .box-body -->
 
         <div class="box-header with-border">
-            <h3 class="box-title">题库管理</h3>
+            <h3 class="box-title">答案列表管理</h3>
         </div>
 
         <div class="box-body">
@@ -74,7 +69,6 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
                             <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-
                             <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                         </div>
                     </div>
@@ -88,24 +82,23 @@
                         <th class="" style="padding-right:0px">
                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                         </th>
-                        <th class="sorting_asc">题库ID</th>
-                        <th class="sorting">题库名称</th>
-                        <th class="sorting">题库添加时间</th>
+                        <th class="sorting_asc">问题ID</th>
+                        <th class="sorting">答案内容</th>
+                        <th class="sorting">答案添加时间</th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr >
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td class="text-center">
                             <button type="button"  id="del">删除</button>
                             <button type="button"  >修改</button>
                         </td>
                     </tr>
-
                     </tbody>
 
                 </table>
@@ -113,6 +106,7 @@
 
             </div>
             <!-- 数据表格 /-->
+
         </div>
         <!-- /.box-body -->
 
@@ -122,20 +116,21 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">题库 模板编辑</h3>
+                        <h3 id="myModalLabel">答案 模板编辑</h3>
                     </div>
                     <div class="modal-body">
                         <form  id="fileForm" >
-
-                        <table class="table table-bordered table-striped"  width="800px">
-                            <tr>
-                                <td>题库名称</td>
-                                <td><input  class="form-control" placeholder="" name="" id="">  </td>
-                            </tr>
-                            
-                            
-                           
-                        </table>
+                            <table class="table table-bordered table-striped"  width="800px">
+                                {{--//<tr>
+                                    <td>答案名称</td>
+                                    <td><input  class="form-control" placeholder="请填写答案名称" name="ans_name" id="ans_name">  </td>
+                                </tr> //--}}
+                                <tr>
+                                    <td>答案内容</td>
+                                    <td><textarea placeholder= name="ans_text" id="ans_text" cols="30" rows="10"></textarea></td>
+                                </tr> 
+                            </table>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="button">添加</button>
@@ -155,9 +150,9 @@
     <!-- 底部导航 -->
     @include("nav.admin_foot")
             <!-- 底部导航 /-->
-
 </div>
 
 </body>
 
 </html>
+
