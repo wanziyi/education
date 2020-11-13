@@ -17,11 +17,14 @@
     <link rel="stylesheet" href="/admin/css/style.css">
 
     <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
+    <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
-
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/admin/js/uploadify/jquery.js"></script>
+    <link rel="stylesheet" href="/admin/js/uploadify/uploadify.css">
+    <script src="/admin/js/uploadify/jquery.uploadify.js"></script>
 
     {{--<script type="text/javascript">--}}
     {{--function SetIFrameHeight(){--}}
@@ -104,7 +107,7 @@
                             <tr>
                                 <td>题库类型</td>
                                 <td>
-                                    <input type="radio"  name="question_ttype" @if($data['question_ttype']=="PHP") checked @endif value="php" id="question_ttype">PHP
+                                    <input type="radio"  name="question_ttype" @if($data['question_ttype']=="PHP") checked @endif value="PHP" id="question_ttype">PHP
                                     <input type="radio"  name="question_ttype" @if($data['question_ttype']=="JAVA") checked @endif value="JAVA" id="question_ttype">JAVA
                                     <input type="radio"  name="question_ttype" @if($data['question_ttype']=="C++") checked @endif value="C++" id="question_ttype">C++
                                     <input type="radio"  name="question_ttype" @if($data['question_ttype']=="Pythsn") checked @endif value="Pythsn" id="question_ttype">Pythsn
@@ -124,7 +127,7 @@
                                     <select name="question_type" id="question_type">
                                         <option value="">--请选择--</option>
                                         <option value="单选题" @if($data['question_type']=="单选题") selected @endif>单选题</option>
-                                        <option value="多选题" @if($data['question_type']=="多选题") selected @endif>多选题</option>
+                                        <option value="多选题" @if($data['question_type']=="多选题") selected @endif >多选题</option>
                                         <option value="简答题" @if($data['question_type']=="简答题") selected @endif>简答题</option>
                                     </select>
                                 </td>
@@ -178,19 +181,18 @@
         var question_contentssss=$("#question_contentssss").val();
         var question_yescten=$("#question_yescten").val();
         var question_ttype=$("#question_ttype:checked").val();
-        // alert(question_ttype);return
         var question_score=$("#question_score").val();
         var question_type=$("#question_type").val();
         var question_bian=$("#question_bian").val();
         var question_id = $("#question_id").val();
         var per_id=$("#per_id").val();
         $.ajax({
-            url:'/singcho/singcho_upd_do',
+            url:'/mucho/mucho_upd_do',
             dataType:'json',
             type:'POST',
             data:{question_id:question_id,question_contentssss:question_contentssss,question_contentsss:question_contentsss,question_contentss:question_contentss,question_name:question_name,question_contents:question_contents,question_yescten:question_yescten,question_ttype:question_ttype,question_score:question_score,question_type:question_type,question_bian:question_bian,per_id:per_id},
             success:function(res){
-               if(res.code==03333){
+               if(res.code==55555){
                     location.href=res.url
                }else{
                     location.href=res.url

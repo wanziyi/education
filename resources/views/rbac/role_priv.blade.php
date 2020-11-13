@@ -80,12 +80,10 @@
             data:{role_id:role_id,priv_id:check},
             dataType:'json',
             success:function(res){
-                if(res.code==0000){
-                    alert(res.msg);
-                    window.location.href=res.url;
-                }else{
-                    alert(res.msg);
-                    window.location.href=res.url;
+                // alert(111);
+                if(res.code=='0'){
+                    alert(res.mag)
+                    location.href='/rbac/role_priv_list'
                 }
             }
         })

@@ -140,7 +140,8 @@ Route::any("/catagory/cata_add",'Admin\CataController@cata_add');//后台课程�
 Route::any("/catagory/store",'Admin\CataController@store');//后台课程目录执行添加
 Route::any("/catagory/cata_list",'Admin\CataController@cata_list');//后台课程目录展示
 Route::any("/catagory/del",'Admin\CataController@del');//后台课程目录删除
-Route::any("/catagory/update",'Admin\CataController@update');//后台课程目录修改
+Route::any("/catagory/update/{id}",'Admin\CataController@update');//后台课程目录修改
+Route::any("/catagory/updatedo",'Admin\CataController@updatedo');//后台课程目录修改
 
 Route::any("/cd/cd_add",'Admin\CdController@cd_add');//后台课程资料添加
 Route::any("/cd/store",'Admin\CdController@store');//后台课程资料执行添加
@@ -150,41 +151,46 @@ Route::any("/cd/update",'Admin\CdController@update');//后台课程资料修改
 
 
 
-Route::any("/role/role_add",'Admin\RoleController@role_add');//后台角色添加
-Route::any("/role/store",'Admin\RoleController@store');//后台角色执行添加
-Route::any("/role/role_list",'Admin\RoleController@role_list');//后台角色展示
-Route::any("/role/del",'Admin\RoleController@del');//后台角色删除
-Route::any("/role/update/{id}",'Admin\RoleController@update');//后台角色修改
-Route::any("/role/updatedo",'Admin\RoleController@updatedo');//后台角色修改
+Route::any("/role/role_add",'Admin\RoleController@role_add')->middleware('rbac');//后台角色添加
+Route::any("/role/store",'Admin\RoleController@store')->middleware('rbac');//后台角色执行添加
+Route::any("/role/role_list",'Admin\RoleController@role_list')->middleware('rbac');//后台角色展示
+Route::any("/role/del",'Admin\RoleController@del')->middleware('rbac');//后台角色删除
+Route::any("/role/update/{id}",'Admin\RoleController@update')->middleware('rbac');//后台角色修改
+Route::any("/role/updatedo",'Admin\RoleController@updatedo')->middleware('rbac');//后台角色修改
 
 
 Route::any("/admin/mycourse",'Admin\AdminController@mycourse');//信息展示
 
 
-Route::any("/rbac/priv","Admin\AdminController@priv");//权限
-Route::any("/rbac/privDo","Admin\AdminController@privDo");//权限执行
-Route::any("/rbac/priv_list","Admin\AdminController@priv_list");//权限展示
-Route::any("/rbac/priv_del","Admin\AdminController@priv_del");//权限删除
-Route::any("/rbac/priv_up/{id}","Admin\AdminController@priv_up");//权限修改
-Route::any("/rbac/priv_upDo","Admin\AdminController@priv_upDo");//权限修改执行
+Route::any("/rbac/priv","Admin\AdminController@priv")->middleware('rbac');//权限
+Route::any("/rbac/privDo","Admin\AdminController@privDo")->middleware('rbac');//权限执行
+Route::any("/rbac/priv_list","Admin\AdminController@priv_list")->middleware('rbac');//权限展示
+Route::any("/rbac/priv_del","Admin\AdminController@priv_del")->middleware('rbac');//权限删除
+Route::any("/rbac/priv_up/{id}","Admin\AdminController@priv_up")->middleware('rbac');//权限修改
+Route::any("/rbac/priv_upDo","Admin\AdminController@priv_upDo")->middleware('rbac');//权限修改执行
 
 
-Route::any("/user/user_add",'Admin\UserController@user_add');//后台用户添加
-Route::any("/user/store",'Admin\UserController@store');//后台用户执行添加
-Route::any("/user/user_list",'Admin\UserController@user_list');//后台用户展示
-Route::any("/user/del",'Admin\RoleController@del');//后台用户删除
-Route::any("/user/update/{id}",'Admin\UserController@update');//后台用户修改
-Route::any("/user/updatedo",'Admin\UserController@updatedo');//后台用户修改
+Route::any("/user/user_add",'Admin\UserController@user_add')->middleware('rbac');//后台用户添加
+Route::any("/user/store",'Admin\UserController@store')->middleware('rbac');//后台用户执行添加
+Route::any("/user/user_list",'Admin\UserController@user_list')->middleware('rbac');//后台用户展示
+Route::any("/user/del",'Admin\UserController@del')->middleware('rbac');//后台用户删除
+Route::any("/user/update/{id}",'Admin\UserController@update')->middleware('rbac');//后台用户修改
+Route::any("/user/updatedo",'Admin\UserController@updatedo')->middleware('rbac');//后台用户修改
 
 
-Route::any("/userrole/userrole/{id}",'Admin\UserroleController@userrole');//后台用户添加
-Route::any("/userrole/store",'Admin\UserroleController@store');//后台用户执行添加
-Route::any("/userrole/index",'Admin\UserroleController@index');//后台用户展示
-Route::any("/userrole/del",'Admin\UserroleController@del');//后台用户删除
-Route::any("/userrole/update/{id}",'Admin\UserroleController@update');//后台用户修改
-Route::any("/userrole/updatedo",'Admin\UserroleController@updatedo');//后台用户修改
+Route::any("/userrole/userrole/{id}",'Admin\UserroleController@userrole')->middleware('rbac');//后台用户角色添加
+Route::any("/userrole/store",'Admin\UserroleController@store')->middleware('rbac');//后台用户角色执行添加
+Route::any("/userrole/index",'Admin\UserroleController@index')->middleware('rbac');//后台用户角色展示
+Route::any("/userrole/del",'Admin\UserroleController@del')->middleware('rbac');//后台用户角色删除
+Route::any("/userrole/update/{id}",'Admin\UserroleController@update')->middleware('rbac');//后台用户角色修改
+Route::any("/userrole/updatedo",'Admin\UserroleController@updatedo')->middleware('rbac');//后台用户角色修改
 
 
+
+
+Route::any("/rbac/role_priv","Admin\AdminController@role_priv")->middleware('rbac');//角色权限
+Route::any("/rbac/role_privDo","Admin\AdminController@role_privDo")->middleware('rbac');//角色权限执行
+Route::any("/rbac/role_priv_list","Admin\AdminController@role_priv_list")->middleware('rbac');//角色权限执行
 
 
 Route::any("/exam/exam_add",'Admin\AdminController@exam_add');//后台考试添加
@@ -192,15 +198,17 @@ Route::any("/exam/exam_list",'Admin\AdminController@exam_list');//后台考试�
 Route::any("/exam/exam_del",'Admin\AdminController@exam_del');//后台考试删除
 Route::any("/exam/exam_upd",'Admin\AdminController@exam_upd');//后台考试修改
 Route::any("/exam/exam_upd_do",'Admin\AdminController@exam_upd_do');//后台考试修改执行
-
 Route::any("/rbac/role_priv","Admin\AdminController@role_priv");//角色权限
 Route::any("/rbac/role_privDo","Admin\AdminController@role_privDo");//角色权限执行
 Route::any("/rbac/role_priv_list","Admin\AdminController@role_priv_list");//角色权限执行
+
 
 Route::any("/task/user_job","Admin\AdminController@user_job");//用户作业
 Route::any("/task/jobDo","Admin\AdminController@jobDo");//用户作业执行
 Route::any("/task/user_job_list","Admin\AdminController@user_job_list");//用户作业执行
 Route::any("/task/user_job_del","Admin\AdminController@user_job_del");//用户删除
+
+
 Route::any("/notice/notice_add",'Admin\AdminController@notice_add');//后台公告添加
 Route::any("/notice/notice_list",'Admin\AdminController@notice_list');//后台公告展示
 Route::any("/notice/notice_del",'Admin\AdminController@notice_del');//后台公告删除
@@ -224,11 +232,15 @@ Route::any("/singcho/singcho_add",'Admin\AdminController@singcho_add');//后台�
 Route::any("/singcho/singcho_list",'Admin\AdminController@singcho_list');//后台单选题展示
 Route::any("/singcho/singcho_del",'Admin\AdminController@singcho_del');//后台单选题删除
 Route::any("/singcho/singcho_upd",'Admin\AdminController@singcho_upd');//后台单选题修改
-Route::any("/singcho/singcho_upd_do",'Admin\AdminController@singcho_upd_do ');//后台单选题修改执行
+Route::any("/singcho/singcho_upd_do",'Admin\AdminController@singcho_upd_do');//后台单选题修改执行
 
 Route::any("/mucho/mucho_add",'Admin\AdminController@mucho_add');//后台单选题添加
 Route::any("/mucho/mucho_list",'Admin\AdminController@mucho_list');//后台单选题展示
 Route::any("/mucho/mucho_del",'Admin\AdminController@mucho_del');//后台单选题删除
 Route::any("/mucho/mucho_upd",'Admin\AdminController@mucho_upd');//后台单选题修改
+
 Route::any("/mucho/mucho_upd_do",'Admin\AdminController@mucho_upd_do ');//后台单选题修改执行
+
+
+Route::any("/mucho/mucho_upd_do",'Admin\AdminController@mucho_upd_do');//后台单选题修改执行
 

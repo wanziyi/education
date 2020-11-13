@@ -162,14 +162,14 @@
         per_tel = $("[id='per_tel']").val();
         cur_id = $("select[id='cur_id']").val();
         per_style = $("textarea[id='per_style']").val();
-        console.log(cur_id)
+        // console.log(cur_id)
         $.ajax({
             url:"{{url('/personal/personal_Do')}}",
             type:'POST',
             data:{per_name:per_name,per_content:per_content,per_img:per_img,per_address:per_address,per_age:per_age,per_tel:per_tel,cur_id:cur_id,per_style:per_style},
             dataType:'json',
             success:function(res){
-                if(res.code==0000){
+                if(res.code==1234){
                     alert(res.msg);
                     window.location.href=res.url;
                 }else{

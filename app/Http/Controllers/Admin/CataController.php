@@ -47,7 +47,30 @@ class CataController extends Controller
     	return view("catagory.cata_list",['res'=>$res]);
     }
 
-    public function update(){
-    	return view("catagory.update");
+    public function update($id){
+        $res = CategoryModel::get();
+        $data = CataModel::where('cata_id',$id)->first();
+    	return view("catagory.update",['res'=>$res,'data'=>$data]);
+    }
+
+    public function updatedo(){
+        // echo 111;
+        $cata_id = request()->post('cata_id');
+        $cata_name = request()->post('cata_name');
+        $cate_id = request()->post('cate_id');
+        // echo $cata_name;
+        // echo $cate_id;
+        $data = [
+            'cata_id'=>$cata_id,
+            'cata_name'=>$cata_name,
+            'cate_id'=>$cate_id
+        ];
+        $res = CataModel::where('cata_id',$cata_id)->update($data);
+        // dd($res);
+        if($res){
+            return['code'=>'0','mag'=>"成功"];
+        }else{
+            return['code'=>'1','mag'=>"失败"];
+        }
     }
 }

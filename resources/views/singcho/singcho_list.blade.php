@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -19,6 +18,7 @@
     <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 
+
     <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
 
 
@@ -35,6 +35,7 @@
 </head>
 
 <body class="hold-transition skin-green sidebar-mini" >
+    
 
 <div class="wrapper">
 
@@ -110,7 +111,7 @@
                         <td>{{$v->question_contents}}</td>
                         <td>{{$v->question_yescten}}</td>
                         <td>{{$v->question_ttype}}</td>
-                        <td>{{date("Y-m-d H:i:s"),$v->question_time}}</td> 
+                        <td>{{date("Y-m-d H:i:s"),$v->question_time}}</td>
                         <td>{{$v->question_score}}</td>
                         <td>{{$v->question_type}}</td>
                         <td>{{$v->question_bian}}</td>

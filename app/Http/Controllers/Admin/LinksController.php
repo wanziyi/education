@@ -44,6 +44,7 @@ class LinksController extends Controller
         }
     }//后台资讯删除
 
+
     public function links_upd($id)
     {
         $res = LinksModel::where('links_id', $id)->first();
@@ -101,6 +102,11 @@ class LinksController extends Controller
             $brand = LinksModel::where($wheres)->update($data);
         }
     }//后台资讯修改执行
+
+
+
+
+
 
 }
 

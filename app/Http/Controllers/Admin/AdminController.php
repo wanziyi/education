@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Faker\Provider\ko_KR\Person;
 use Illuminate\Http\Request;
 use App\Http\Model\Notice;
-use App\Http\Model\Personal;
+
 use App\Http\Model\Question;
+
 //use App\Model\Personal;
+
 use App\Model\Users;
 use App\Model\Priv;
 use App\Model\RoleModel;
@@ -164,7 +166,6 @@ class AdminController extends Controller
             ];
         }
         return json_encode($arr);
-        return view("question.question_add");
     }//后台题库修改执行
 
     public function info_add(){
@@ -205,21 +206,25 @@ class AdminController extends Controller
 
     public function personal_Do(Request $request){
         $data = request()->all();
+        // dd($data);
         $Personal = new Personal;
         $res = $Personal->insert($data);
+        // dd($res);
         if($res){
             $arr =
                 [
+
                     "code"=>0000,
-                    "msg"=>"讲师添加成功",
+                    "msg"=>"ok",
                     "url"=>"/personal/personal_list",
                 ];
             return json_encode($arr);
         }else{
             $arr =
                 [
+
                     "code"=>0001,
-                    "msg"=>"讲师添加失败",
+                    "msg"=>"no",
                     "url"=>"/personal/personal_add",
                 ];
             return json_encode($arr);
@@ -230,6 +235,7 @@ class AdminController extends Controller
     public function personal_list(){
         $Personal = new Personal;
         $data = $Personal->paginate(2);
+        // dd($data);
         return view("personal.personal_list",["data"=>$data]);
     }//讲师展示
 
@@ -261,9 +267,11 @@ class AdminController extends Controller
         return view("personal.personal_add");
     }//后台讲师修改
 
+
     public function personal_upd_do(){
         return view("personal.personal_add");
     }//后台讲师修改执行
+
 
     public function personal_up($per_id)
     {
@@ -460,13 +468,36 @@ class AdminController extends Controller
         $per = Personal::get();
         $question = new Question();
         $data = $question->leftjoin("personal","question.per_id","=","personal.per_id")->where("question_id",$question_id)->first()->toArray();
-        $question_contents=explode(',',$data['question_contents']);
-        // dd($question_contents);
-        return view("singcho.singcho_upd",["data"=>$data,"per"=>$per,"question_contents"=>$question_contents]);
+        $data["a"]=explode(',',$data['question_contents']);
+        // dd($data);
+        return view("singcho.singcho_upd",["data"=>$data,"per"=>$per]);
     }//后台题库单选题修改多选题
 
     public function singcho_upd_do(){
-        return view("singcho.singcho_upd_do");
+        $Question=new Question();
+        $data = request()->all();
+        $data["question_contents"] = $data["question_contents"].",".$data["question_contentss"].",".$data["question_contentsss"].",".$data["question_contentssss"];
+        // unset($data["question_contents"]);
+        unset($data["question_contentss"]);
+        unset($data["question_contentsss"]);
+        unset($data["question_contentssss"]);
+        // dd($data);
+        $res = $Question->where(["question_id"=>$data["question_id"]])->update($data);
+        if($res){
+            $arr=[
+                "code"=>03333,
+                // "msg"=>"题库单选题修改成功",
+                "url"=>"/singcho/singcho_list",
+            ];
+        }else{
+            $arr=[
+                "code"=>03334,
+                // "msg"=>"题库单选题修改失败",
+                "url"=>"/singcho/singcho_list"
+            ];
+        } 
+        return json_encode($arr);
+
     }//后台题库单选题修改执行
 
     public function mucho_add(){
@@ -525,11 +556,39 @@ class AdminController extends Controller
     }//后台多选题删除
 
     public function mucho_upd(){
-        return view("mucho.mucho_upd");
+        $question_id = request()->question_id;
+        $per = Personal::get();
+        $question = new Question();
+        $data = $question->leftjoin("personal","question.per_id","=","personal.per_id")->where("question_id",$question_id)->first()->toArray();
+        $data["a"]=explode(',',$data['question_contents']);
+        // dd($data);
+        return view("mucho.mucho_upd",["data"=>$data,"per"=>$per]);
     }//后台多选题修改
 
     public function mucho_upd_do(){
-        return view("mucho.mucho_add");
+        $Question=new Question();
+        $data = request()->all();
+        $data["question_contents"] = $data["question_contents"].",".$data["question_contentss"].",".$data["question_contentsss"].",".$data["question_contentssss"];
+        // unset($data["question_contents"]);
+        unset($data["question_contentss"]);
+        unset($data["question_contentsss"]);
+        unset($data["question_contentssss"]);
+        // dd($data);
+        $res = $Question->where(["question_id"=>$data["question_id"]])->update($data);
+        if($res){
+            $arr=[
+                "code"=>03333,
+                // "msg"=>"题库多选题修改成功",
+                "url"=>"/mucho/mucho_list",
+            ];
+        }else{
+            $arr=[
+                "code"=>03334,
+                // "msg"=>"题库多选题修改失败",
+                "url"=>"/mucho/mucho_list"
+            ];
+        } 
+        return json_encode($arr);
     }//后台多选题修改执行
 
     public function mycourse()
@@ -660,22 +719,12 @@ class AdminController extends Controller
             "time"=>time()
         ];
         $res = Rolepriv::insert($data);
+        // dd($res);die;
         if($res){
-            $arr =
-                [
-                    "code"=>0000,
-                    "msg"=>"Success Ok",
-                    "url"=>"/rbac/role_priv_list"
-                ];
-        }else{
-            $arr =
-                [
-                    "code"=>0001,
-                    "msg"=>"Error No",
-                    "url"=>"/rbac/role_priv"
-                ];
+                return['code'=>'0','mag'=>"成功"];
+            }else{
+                return['code'=>'1','mag'=>"失败"];
         }
-        return json_encode($arr);
     }
 
     //用户作业
@@ -767,5 +816,6 @@ class AdminController extends Controller
        // dd($data);
        return view("rbac.role_priv_list",["data"=>$data]);
    }
+
 }
     

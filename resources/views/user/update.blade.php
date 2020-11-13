@@ -15,22 +15,10 @@
     <link rel="stylesheet" href="/admin/css/style.css">
 
     <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/admin/plugins/adminLTE/js/app.min.js"></script>
-
-
-    {{--<script type="text/javascript">--}}
-    {{--function SetIFrameHeight(){--}}
-    {{--var iframeid=document.getElementById("iframe"); //iframe id--}}
-    {{--if (document.getElementById){--}}
-    {{--iframeid.height =document.documentElement.clientHeight;--}}
-    {{--}--}}
-    {{--}--}}
-
-    {{--</script>--}}
-
-
     <script src="/plugins/jquery/jquery.min.js"></script>
     <script src="/admin/js/uploadify/jquery.js"></script>
     <link rel="stylesheet" href="/admin/js/uploadify/uploadify.css">
@@ -53,18 +41,18 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <div class="row data-type">
-                        <input type="hidden" name="cata_id" value="{{$data->cata_id}}">
-                        <div class="col-md-2 title">目录名称</div>
+                        <input type="hidden" name="u_id" value="{{$res->u_id}}">
+                        <div class="col-md-2 title">用户名称</div>
                         <div class="col-md-10 data">
-                            <input type="text" class="form-control"  placeholder="目录名称" name="cata_name" id="" value="{{$data->cata_name}}">
+                            <input type="text" class="form-control"  placeholder="用户名称" name="u_name" id="user_name" value="{{$res->u_name}}">
                         </div>
-                        <div class="col-md-2 title">目录分类</div>
+                        <div class="col-md-2 title">用户密码</div>
                         <div class="col-md-10 data">
-                            <select name="cate_id" id="">
-                                    @foreach($res as $k=>$v)
-                                    <option value="{{$v->cate_id}}" {{$v->cate_id==$data['cata_id']?'selected':''}}><?php echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']) ?>{{$v->cate_name}}</option>
-                                    @endforeach
-                            </select>
+                            <input type="password" class="form-control"  placeholder="用户密码" name="u_pwd" id="u_pwd" value="{{$res->u_pwd}}">
+                        </div>
+                        <div class="col-md-2 title">确认密码</div>
+                        <div class="col-md-10 data">
+                            <input type="password" class="form-control"  placeholder="确认密码" name="u_pwds" id="u_pwds" value="{{$res->u_pwd}}">
                         </div>
                     </div>
                 </div>
@@ -84,23 +72,26 @@
 <script>
     $(document).on('click','#button',function(){
         // alert(111);
-        var cata_id=$('input[name="cata_id"]').val();
-        var cata_name=$('input[name="cata_name"]').val();
-        var cate_id=$('select[name="cate_id"]').val();
-        // console.log(cata_name);
-        // console.log(cate_id);
+        var u_id=$('input[name="u_id"]').val();
+        var u_name=$('input[name="u_name"]').val();
+        var u_pwd=$('input[name="u_pwd"]').val();
+        var u_pwds=$('input[name="u_pwds"]').val();
+        // console.log(u_name);
+        // console.log(u_pwd);
+        // console.log(u_pwds);
         $.ajax({
-            url:"/catagory/updatedo",
-                data:{cate_id:cate_id,cata_name:cata_name,cata_id:cata_id},
-                type:"post",
-                dataType:"json",
+            url:"/user/updatedo",
+            data:{u_name:u_name,u_pwd:u_pwd,u_pwds:u_pwds,u_id:u_id},
+            type:"post",
+            dataType:"json",
                 success:function(res){
                     // alert(111);
                     if(res.code=='0'){
                         alert(res.mag)
-                        location.href='/catagory/cata_list'
+                        location.href='/user/user_list'
                     }
                 }
         })
+        
     })
 </script>

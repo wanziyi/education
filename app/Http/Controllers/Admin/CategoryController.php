@@ -27,7 +27,7 @@ class CategoryController extends CommonController
     		"pid"=>$pid
     	];
     	$res = CategoryModel::insert($data);
-    	// dd($res);
+    	// dd($res);die;
     	if($res){
             return['code'=>'0','mag'=>"课程分类成功"];
         }else{

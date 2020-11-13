@@ -104,26 +104,15 @@
                                     </form>
                             </div>
                         </div>
-                
-                <!--工具栏/-->
-                <!--数据列表-->
 
-                <!--数据列表/-->
+
 
 
             </div>
             <!-- 数据表格 /-->
 
-
-
-
         </div>
-        <!-- /.box-body -->
 
-
-
-
-        <!-- 编辑窗口 -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" >
                 <div class="modal-content">
